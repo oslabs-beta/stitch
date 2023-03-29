@@ -1,0 +1,34 @@
+const dataController = {
+  getOne: async (req, res, next) => {
+    try {
+      const request = await fetch('https://swapi.dev/api/people/1/');
+      const data = await request.json();
+      //   console.log(data);
+      res.locals.data = data;
+      return next();
+    } catch {
+      return next({
+        log: 'Express error handler caught error in dataController.getOne',
+        status: 500,
+        message: { err: 'Failed to fetch one' },
+      });
+    }
+  },
+  getPokemon: async (req, res, next) => {
+    try {
+      const request = await fetch('https://pokeapi.co/api/v2/pokemon/mewtwo');
+      const data = await request.json();
+      console.log(data);
+      res.locals.data = data;
+      return next();
+    } catch {
+      return next({
+        log: 'Express error handler caught error in dataController.pokemon',
+        status: 500,
+        message: { err: 'Failed to fetch pokemon Mewtwo' },
+      });
+    }
+  },
+};
+
+module.exports = dataController;
