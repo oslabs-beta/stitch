@@ -10,18 +10,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client')));
 
 app.get('/', (req, res) => {
-  res.sendStatus(200);
+  return res.sendStatus(200);
 });
 // test1 api 
 app.get('/one', dataController.getOne, (req, res) => {
-  res.status(200).json(res.locals.data);
+  return res.status(200).json(res.locals.data);
 });
 //test2 a lot of info in MewTwo Pokemon
 app.get('/pokemon', dataController.getPokemon, (req, res) => {
-  res.status(200).json(res.locals.data);
+  return res.status(200).json(res.locals.data);
 });
 
 // dynamic endpoint
+app.post('/postURL', dataController.getUrlResponse, (req, res) => {
+  return res.status(200).json(res.locals.data);
+})
 
 
 // Unknown route handler
