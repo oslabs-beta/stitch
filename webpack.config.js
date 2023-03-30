@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './client/index.js',
   output: {
-    path: path.resolve(__dirname, ('dist')),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
@@ -13,18 +13,18 @@ module.exports = {
     host: 'localhost',
     port: '8080',
     hot: true,
-    open: true,
+    open: process.env.DEV_OPEN,
     historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'dist'),
       publicPath: '/dist',
     },
-    headers: {'Allow-Control-Allow-Origin': '*'},
+    headers: { 'Allow-Control-Allow-Origin': '*' },
     proxy: {
       '/': 'http://localhost:3000',
     },
   },
-  module:  {
+  module: {
     rules: [
       {
         test: /\.jsx?/,
@@ -33,7 +33,8 @@ module.exports = {
         options: {
           presets: [
             ['@babel/preset-env', { targets: 'defaults' }],
-            ['@babel/preset-react',
+            [
+              '@babel/preset-react',
               { targets: 'defaults', runtime: 'automatic' },
             ],
           ],
@@ -42,20 +43,16 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
-        use: [
-          'style-loader', 
-          'css-loader', 
-          'sass-loader'
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/index.html'
-    })
+      template: './client/index.html',
+    }),
   ],
-  resolve:{
-    extensions: ['.js', '.jsx']
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
-}
+};
