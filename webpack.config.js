@@ -21,7 +21,7 @@ module.exports = {
     },
     headers: { 'Allow-Control-Allow-Origin': '*' },
     proxy: {
-      '/': 'http://localhost:3000',
+      '/': { target: 'http://localhost:3000', timeout: 500000 },
     },
   },
   module: {

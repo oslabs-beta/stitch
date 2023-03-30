@@ -12,7 +12,7 @@ export default function JSONFieldContainer() {
 
   async function fetchData() {
     await axios
-      .get('/pokemon')
+      .get('/one')
       .then((response) => response.data)
       .then((object) => {
         setJsonObject(object);
