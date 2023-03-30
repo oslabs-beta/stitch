@@ -13,7 +13,7 @@ module.exports = {
     host: 'localhost',
     port: '8080',
     hot: true,
-    open: process.env.DEV_OPEN,
+    open: false,
     historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'dist'),
