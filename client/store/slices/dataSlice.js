@@ -1,30 +1,53 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
-  endpointData: {},
+  endpointData: {test: 'test'},
 }
+
+export const addDataCard = createAsyncThunk(
+  'responseData/addDataCard',
+  async (url) => {
+    const request = await fetch('/postURL', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({url}),
+    });
+    const data = await request.json()
+    console.log('in reducer', data);
+    return data;
+  }
+);
 
 export const dataSlice = createSlice({
   name: 'responseData',
   initialState,
   reducers: {
-    addDataCard: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      // call endpoint to get back response data
-      state['url'] += 'response data'
-    },
-    deleteDataCard: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    addDataCardOld: (state, action) => {
+      return
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(addDataCard.fulfilled, (state, action) => {
+      // console.log(action.meta.arg);
+      state.endpointData[action.meta.arg] = action.payload;
+      // console.log(action.payload);
+      // console.log()
+      // console.log(state.endpointData);
+    });
+  }
 })
 
-export const { addDataCard, deleteDataCard, incrementByAmount } = dataSlice.actions
+export const { addDataCard2 } = dataSlice.actions
+
+// // async thunk logic here
+// export const fetchUsersAsync = createAsyncThunk(
+//   'addDataCard',
+//   async (url) => {
+//     const response = await fetch();
+//     return response.data;
+//   }
+// );
 
 export default dataSlice.reducer;

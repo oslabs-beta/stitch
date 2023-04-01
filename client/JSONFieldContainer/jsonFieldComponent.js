@@ -2,7 +2,7 @@
 export default function JsonFieldComponent({ objectKey, objectValue }) {
   return (
     <p>
-      "{objectKey}" : "{objectValue}"<button>add</button>
+      "{objectKey}" : "{Object.keys(objectValue)}"<button>add</button>
       <button>delete</button>
     </p>
   );

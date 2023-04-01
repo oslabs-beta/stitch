@@ -3,7 +3,6 @@ const dataController = {
     try {
       const request = await fetch('https://swapi.dev/api/people/1/');
       const data = await request.json();
-      //   console.log(data);
       res.locals.data = data;
       return next();
     } catch {
@@ -34,7 +33,7 @@ const dataController = {
     try {
       const request = await fetch(url);
       const data = await request.json();
-      console.log(data);
+      console.log('in server middleware', data);
       res.locals.data = data;
       return next();
     } catch {
