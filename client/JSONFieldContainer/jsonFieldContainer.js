@@ -7,7 +7,7 @@ import axios from 'axios';
 
 export default function JSONFieldContainer() {
   // const [jsonObject, setJsonObject] = useState({});
-  const jsonObject = useSelector((state) => state.responseData.endpointData);
+  const jsonObject = useSelector((state) => state.responseData.activeEndpoint.responseBody);
   console.log('printing json object', jsonObject);
   // const dispatch = useDispatch();
 
