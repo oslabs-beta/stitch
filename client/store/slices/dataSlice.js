@@ -1,7 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
-  endpointData: {test: 'test'},
+  endpointData: {
+  },
+  activeEndpoint: {
+    url: '',
+    responseBody: {},
+  },
 }
 
 export const addDataCard = createAsyncThunk(
@@ -24,14 +29,22 @@ export const dataSlice = createSlice({
   name: 'responseData',
   initialState,
   reducers: {
-    addDataCardOld: (state, action) => {
-      return
+    updateActiveEndpoint: (state, action) => {
+      console.log('in update active endpoint reducer')
+      // state.activeEndpoint = {
+      //   url: action.payload,
+      //   responseBody: {}
+      // }
     },
   },
   extraReducers: (builder) => {
     builder.addCase(addDataCard.fulfilled, (state, action) => {
       // console.log(action.meta.arg);
       state.endpointData[action.meta.arg] = action.payload;
+      state.activeEndpoint = {
+        url: action.meta.arg,
+        responseBody: action.payload
+      };
       // console.log(action.payload);
       // console.log()
       // console.log(state.endpointData);
