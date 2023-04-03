@@ -8,7 +8,7 @@ import axios from 'axios';
 export default function JSONFieldContainer() {
   // const [jsonObject, setJsonObject] = useState({});
   const jsonObject = useSelector((state) => state.responseData.activeEndpoint.responseBody);
-  console.log('printing json object', jsonObject);
+  // console.log('printing json object', jsonObject);
   // const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -29,7 +29,7 @@ export default function JSONFieldContainer() {
 
   const arrayOfComponents = [];
   for (const key in jsonObject) {
-    console.log('in for loop', jsonObject)
+    // console.log('in for loop', jsonObject)
     // console.log('jsonObject keys', key)
     arrayOfComponents.push(
       <JsonFieldComponent
@@ -42,7 +42,7 @@ export default function JSONFieldContainer() {
   }
 
   return (
-    <div>
+    <div className='JSONFieldContainer'>
       <h1>JSON Response</h1>
       <p>{'{'}</p>
       {arrayOfComponents}

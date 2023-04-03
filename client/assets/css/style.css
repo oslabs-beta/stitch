@@ -1,0 +1,31 @@
+body {
+  /* border: 1px dotted blue; */
+}
+
+.bodyContainer {
+  /* border: 1px dotted red; */
+  display: flex;
+  margin: 25px;
+}
+
+.iconTrayContainer {
+  border: 1px dotted blue;
+  margin-inline: 25px;
+  flex: 1;
+  min-width: 100px;
+  max-width: 200px;
+}
+
+.JSONFieldContainer {
+  border: 1px dotted blue;
+  margin-inline: 25px;
+  flex: 4;
+  min-width: 300px;
+}
+
+.allSchemasContainer {
+  border: 1px dotted blue;
+  margin-inline: 25px;
+  flex: 4;
+  min-width: 300px;
+}
