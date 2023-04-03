@@ -13,7 +13,7 @@ export default function EndpointComponent() {
 
   function handleChange(event) {
     const value = event.target.value;
-    console.log(value);
+    // console.log(value);
     setinputFieldData(value);
   }
 
@@ -23,8 +23,12 @@ export default function EndpointComponent() {
 
   return (
     <div>
-      <input name='EndpointComponent' type='text' onChange={handleChange} placeholder={inputFieldData} />
+      <input className='EndpointComponent' type='text' onChange={handleChange} placeholder={inputFieldData} />
       <button onClick={() => dispatch(addDataCard(inputFieldData))} name='submit'>Add</button>
+      <p>https://swapi.dev/api/people/1/</p>
+      <p>https://swapi.dev/api/vehicles/4/</p>
+      <p>https://swapi.dev/api/planets/1/</p>
+      <p>https://swapi.dev/api/starships/9/</p>
     </div>
   );
 }

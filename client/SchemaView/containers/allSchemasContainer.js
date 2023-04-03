@@ -4,7 +4,7 @@ import SchemaContainer from "./schemaContainer";
 export default function AllSchemasContainer () {
 //   const schemas = []; 
   return (
-    <div>
+    <div className='allSchemasContainer'>
         <SchemaContainer/>
     </div>
   )

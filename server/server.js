@@ -7,7 +7,8 @@ const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, '../client')));
+// serve css file
+app.use(express.static(path.resolve(__dirname, '../client/assets/css')));
 
 app.get('/', (req, res) => {
   return res.sendStatus(200);
