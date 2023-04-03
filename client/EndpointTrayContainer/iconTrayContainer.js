@@ -10,7 +10,7 @@ export default function IconTrayContainer() {
   // Unpacking state object and prop drilling
   const arrayOfComponents = [];
   for (const key in jsonObject) {
-    console.log('in for loop', jsonObject)
+    // console.log('in for loop', jsonObject)
     // console.log('jsonObject keys', key)
     arrayOfComponents.push(
       <EndpointIcon
@@ -22,7 +22,7 @@ export default function IconTrayContainer() {
   }
 
     return (
-      <div>
+      <div className='iconTrayContainer'>
         {/* <EndpointIcon /> */}
         {arrayOfComponents}
       </div>

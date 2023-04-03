@@ -2,7 +2,8 @@
 export default function JsonFieldComponent({ objectKey, objectValue }) {
   return (
     <p>
-      "{objectKey}" : {typeof objectValue === 'object' ? 'object' : objectValue}<button>add</button>
+      {/* "{objectKey}" : {typeof objectValue === 'object' ? 'object' : objectValue}<button>add</button> */}
+      "{objectKey}" : {typeof objectValue}<button>add</button>
       {/* "{objectKey}"<button>add</button> */}
       <button>delete</button>
     </p>
