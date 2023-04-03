@@ -20,7 +20,7 @@ export const addDataCard = createAsyncThunk(
       body: JSON.stringify({url}),
     });
     const data = await request.json()
-    // console.log('in reducer', data);
+    console.log('in reducer', data);
     return data;
   }
 );
@@ -31,7 +31,7 @@ export const dataSlice = createSlice({
   reducers: {
     updateActiveEndpoint: (state, action) => {
       console.log('in update active endpoint reducer')
-      console.log({action})
+      // console.log({action})
 
       state.activeEndpoint = {
         url: action.payload,
@@ -41,7 +41,9 @@ export const dataSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addDataCard.fulfilled, (state, action) => {
-      // console.log(action.meta.arg);
+      // console.log("action", action);
+      // console.log("action.meta", action.meta);
+      // console.log("action.meta.arg", action.meta.arg);
       state.endpointData[action.meta.arg] = action.payload;
       state.activeEndpoint = {
         url: action.meta.arg,
@@ -54,15 +56,15 @@ export const dataSlice = createSlice({
   }
 })
 
-export const { updateActiveEndpoint } = dataSlice.actions
 
 // // async thunk logic here
 // export const fetchUsersAsync = createAsyncThunk(
-//   'addDataCard',
-//   async (url) => {
-//     const response = await fetch();
-//     return response.data;
-//   }
-// );
-
+  //   'addDataCard',
+  //   async (url) => {
+    //     const response = await fetch();
+    //     return response.data;
+    //   }
+    // );
+    
+export const { updateActiveEndpoint } = dataSlice.actions
 export default dataSlice.reducer;
