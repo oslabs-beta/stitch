@@ -1,9 +1,4 @@
-body {
-  /* border: 1px dotted blue; */
-}
-
 .bodyContainer {
-  /* border: 1px dotted red; */
   display: flex;
   margin: 25px;
 }
@@ -14,6 +9,7 @@ body {
   flex: 1;
   min-width: 100px;
   max-width: 200px;
+  padding: 10px;
 }
 
 .JSONFieldContainer {
@@ -21,6 +17,7 @@ body {
   margin-inline: 25px;
   flex: 4;
   min-width: 300px;
+  padding: 10px;
 }
 
 .allSchemasContainer {
@@ -28,4 +25,20 @@ body {
   margin-inline: 25px;
   flex: 4;
   min-width: 300px;
+  padding: 10px;
+}
+
+.schemaContainer > div {
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+#fieldbox > select {
+  padding-right: 10px;
+  margin-inline: 10px;
+  border: none;
+}
+
+#typebox > span {
+  margin-inline: 10px;
 }
