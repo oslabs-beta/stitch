@@ -45,7 +45,7 @@ export default function JSONFieldContainer() {
   return (
     <div className='JSONFieldContainer'>
       <h1>JSON Response</h1>
-      <h3>  {url}</h3>
+      <h3>{url}</h3>
       <p>{'{'}</p>
       {arrayOfComponents}
       <p>{'}'}</p>

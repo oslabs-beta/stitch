@@ -3,7 +3,7 @@
 export default function TypeComponent() {
   const openBracket = '{'
   return (
-    <div>
+    <div id="typebox">
       <span>type</span>
       <input type="text">
         </input>

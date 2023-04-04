@@ -5,6 +5,7 @@ export default function AllSchemasContainer () {
 //   const schemas = []; 
   return (
     <div className='allSchemasContainer'>
+      <h1>Schema View</h1>
         <SchemaContainer/>
     </div>
   )
