@@ -20,7 +20,7 @@ export const addDataCard = createAsyncThunk(
       body: JSON.stringify({url}),
     });
     const data = await request.json()
-    console.log('in reducer', data);
+    // console.log('in reducer', data);
     return data;
   }
 );
