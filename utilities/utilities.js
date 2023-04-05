@@ -4,11 +4,11 @@ const utilityFunctions = {
       if (Array.isArray(string)) {
         // const type = utilityFunctions.scalarParser(string[0]);
         return 'Array';
+        // if (string[0] === '[') return 'Array';
       }
       if (string[0] === '{' || typeof string === 'object') return 'Object';
-      // if (string[0] === '[') return 'Array';
       if (string === 'true' || string === 'false') return 'Boolean';
-      if (parseFloat(string));
+      // if (parseFloat(string));
       if (string.includes('.')) {
         const isDecimal = string.replace('.', '');
         if (Number(isDecimal)) return 'Float';
@@ -19,14 +19,23 @@ const utilityFunctions = {
     }
 
     const value = helper(string);
-    console.log(value);
-    const object = { isArray: false, isObject: false, value: value };
+    // console.log(value);
+    const object = {
+      // create array of options corresponding to 'required state' of Arrays ie: [[], [!], []!, [!]!].
+      isArray: false,
+      isObject: false,
+      graphQL: '',
+      requiredOption: 0,
+      value: value,
+    };
+
     if (value === 'Array') {
-      return Object.assign({}, object, { isArray: true });
+      object.isArray = true;
     }
     if (value === 'Object') {
-      return Object.assign({}, object, { isObject: true });
-    } else return object;
+      object.isObject = true;
+    }
+    return object;
   },
 
   snakeToCamel: (snakeStr) => {
