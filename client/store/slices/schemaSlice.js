@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import utilityFunctions from '../../../utilities/utilities';
+const { scalarParser } = utilityFunctions;
 
 const initialState = {
   schemaFields: {
@@ -7,6 +9,7 @@ const initialState = {
   activeSchema: {
     name: '',
   },
+  graphQL: {},
 };
 
 export const schemaSlice = createSlice({
@@ -17,7 +20,7 @@ export const schemaSlice = createSlice({
       // come back to this - determine type of val
 
       const objectValue = action.payload.objectValue;
-      state.schemaFields[action.payload.objectKey] = objectValue;
+      state.schemaFields[action.payload.objectKey] = scalarParser(objectValue);
     },
   },
 });
