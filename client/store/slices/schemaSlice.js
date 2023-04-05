@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import utilityFunctions from '../../../utilities/utilities';
-const { scalarParser } = utilityFunctions;
+const { scalarParser, snakeToCamel } = utilityFunctions;
 
 const initialState = {
   schemaFields: {
@@ -17,10 +17,9 @@ export const schemaSlice = createSlice({
   initialState,
   reducers: {
     addSchemaField: (state, action) => {
-      // come back to this - determine type of val
-
       const objectValue = action.payload.objectValue;
-      state.schemaFields[action.payload.objectKey] = scalarParser(objectValue);
+      state.schemaFields[snakeToCamel(action.payload.objectKey)] =
+        scalarParser(objectValue);
     },
   },
 });

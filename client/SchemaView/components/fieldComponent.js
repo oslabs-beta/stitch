@@ -32,7 +32,7 @@ export default function FieldComponent({ objectKey, objectValue }) {
   return (
     <div id='fieldbox'>
       {/* <input type='text' id='fieldTextName' value={objectKey} contentEditable="true"></input> */}
-      <span contentEditable='true'>{snakeToCamel(objectKey)}</span>:
+      <span contentEditable='true'>{objectKey}</span>:
       <select>{arrayOfOptions}</select>
       {/* <input type='text' id='fieldTextType' value={typeof objectValue}></input>         */}
       <button id='arrayButton'>[ ]</button>

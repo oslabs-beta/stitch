@@ -4,13 +4,11 @@ import SchemaFieldComponent from '../components/fieldComponent';
 import AddCustomSchemaFieldComponent from '../components/addCustomFieldComponent';
 import { useSelector } from 'react-redux';
 
-export default function SchemaContainer () {
-
+export default function SchemaContainer() {
   const schemas = useSelector((state) => state.schemaSlice.schemaFields);
 
   const arrayOfSchemaFieldComponents = [];
   for (const key in schemas) {
-    console.log({schemas})
     arrayOfSchemaFieldComponents.push(
       <SchemaFieldComponent
         key={`field-component-${key}`}
@@ -21,10 +19,12 @@ export default function SchemaContainer () {
     );
   }
   return (
-    <div className="schemaContainer">
-      <TypeComponent></TypeComponent>
+    <div className='schemaContainer'>
+      <TypeComponent />
+      <>{'{'}</>
       {arrayOfSchemaFieldComponents}
-      <AddCustomSchemaFieldComponent></AddCustomSchemaFieldComponent>
+      {/* <AddCustomSchemaFieldComponent></AddCustomSchemaFieldComponent> */}
+      <>{'}'}</>
     </div>
-  )
+  );
 }
