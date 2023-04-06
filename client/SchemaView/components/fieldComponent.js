@@ -3,16 +3,12 @@
 // place
 import utilityFunctions from '../../../utilities/utilities';
 import { useDispatch } from 'react-redux';
-import {
-  deleteSchemaField,
-  toggleRequired,
-} from '../../store/slices/schemaSlice';
+import { useState } from 'react';
 import {
   deleteSchemaField,
   toggleRequired,
   isArrayChange,
 } from '../../store/slices/schemaSlice';
-import { useState } from 'react';
 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
@@ -21,7 +17,6 @@ export default function FieldComponent({ objectKey, objectValue }) {
   //     // Capitalize the first letter of each component except the first one
   //     return components[0] + components.slice(1).map(c => c.charAt(0).toUpperCase() + c.slice(1)).join('');
   //   }
-  const dispatch = useDispatch();
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
