@@ -1,9 +1,12 @@
 // component reponsible for rendering and modifying each field
 // may need a unique ids for all elements
 // place
-
+import { useDispatch } from "react-redux";
+import { deleteSchemaField } from "../../store/slices/schemaSlice"; 
 import utilityFunctions from '../../../utilities/utilities';
+
 export default function FieldComponent({ objectKey, objectValue }) {
+  const dispatch = useDispatch(); 
   // function snakeToCamel(snakeStr) {
   //     const components = snakeStr.split('_');
   //     // Capitalize the first letter of each component except the first one
@@ -46,7 +49,7 @@ export default function FieldComponent({ objectKey, objectValue }) {
       <button
         id='deleteField'
         name='deleteField'
-        onClick={() => console.log('clicked delete')}
+        onClick={() => dispatch(deleteSchemaField({objectKey}))}
       >
         -
       </button>
