@@ -1,12 +1,13 @@
 // component responsible for rendering and modifying each field
 // may need a unique ids for all elements
 // place
+import utilityFunctions from '../../../utilities/utilities';
 import { useDispatch } from 'react-redux';
 import {
   deleteSchemaField,
+  toggleRequired,
   isArrayChange,
 } from '../../store/slices/schemaSlice';
-import utilityFunctions from '../../../utilities/utilities';
 import { useState } from 'react';
 
 export default function FieldComponent({ objectKey, objectValue }) {
@@ -40,6 +41,7 @@ export default function FieldComponent({ objectKey, objectValue }) {
     <div id='fieldbox'>
       {/* <input type='text' id='fieldTextName' value={objectKey} contentEditable="true"></input> */}
       <span contentEditable='true'>{snakeToCamel(objectKey)}</span>:
+      {/* {if requiredOption === 1 {'!'}} */}
       <select>{arrayOfOptions}</select>
       {/* <input type='text' id='fieldTextType' value={typeof objectValue}></input>         */}
       <button
@@ -53,14 +55,14 @@ export default function FieldComponent({ objectKey, objectValue }) {
       <button
         id='requiredButton'
         name='requiredButton'
-        onClick={() => console.log('clicked requiredButton')}
+        onClick={() => dispatch(toggleRequired(objectKey))}
       >
         !
       </button>
       <button
         id='deleteField'
         name='deleteField'
-        onClick={() => dispatch(deleteSchemaField(objectKey))}
+        onClick={() => dispatch(deleteSchemaField({ objectKey }))}
       >
         -
       </button>
