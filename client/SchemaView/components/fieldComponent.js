@@ -7,9 +7,15 @@ import {
   isArrayChange,
 } from '../../store/slices/schemaSlice';
 import utilityFunctions from '../../../utilities/utilities';
+import { useState } from 'react';
 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
+  const [active, setActive] = useState(false);
+  const handleClick = () => {
+    setActive(!active);
+    dispatch(isArrayChange({ objectKey }));
+  };
 
   const { snakeToCamel } = utilityFunctions;
   // console.log(snakeToCamel(objectKey));
@@ -39,7 +45,8 @@ export default function FieldComponent({ objectKey, objectValue }) {
       <button
         id='arrayButton'
         name='arrayButton'
-        onClick={() => dispatch(isArrayChange({ objectKey }))}
+        onClick={handleClick}
+        style={{ backgroundColor: active ? 'green' : 'buttonface' }}
       >
         [ ]
       </button>
@@ -53,7 +60,7 @@ export default function FieldComponent({ objectKey, objectValue }) {
       <button
         id='deleteField'
         name='deleteField'
-        onClick={() => dispatch(deleteSchemaField({ objectKey }))}
+        onClick={() => dispatch(deleteSchemaField(objectKey))}
       >
         -
       </button>

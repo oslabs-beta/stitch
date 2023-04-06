@@ -29,7 +29,11 @@ export const schemaSlice = createSlice({
       delete state.schemaFields[action.payload.objectKey];
     },
     isArrayChange: (state, action) => {
-      state.schemaFields[action.payload.objectKey].isArray = true;
+      if (!state.schemaFields[action.payload.objectKey].isArray) {
+        state.schemaFields[action.payload.objectKey].isArray = true;
+      } else {
+        state.schemaFields[action.payload.objectKey].isArray = false;
+      }
     },
   },
 });
