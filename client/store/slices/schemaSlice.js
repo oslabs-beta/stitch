@@ -17,6 +17,7 @@ export const schemaSlice = createSlice({
   initialState,
   reducers: {
     addSchemaField: (state, action) => {
+      // come back to this - determine type of val
       const objectValue = action.payload.objectValue;
       state.schemaFields[snakeToCamel(action.payload.objectKey)] =
         scalarParser(objectValue);
@@ -31,9 +32,20 @@ export const schemaSlice = createSlice({
       );
       delete state.schemaFields[action.payload.objectKey];
     },
+    isArrayChange: (state, action) => {
+      if (!state.schemaFields[action.payload.objectKey].isArray) {
+        state.schemaFields[action.payload.objectKey].isArray = true;
+      } else {
+        state.schemaFields[action.payload.objectKey].isArray = false;
+      }
+    },
   },
 });
 
-export const { addSchemaField, deleteSchemaField, toggleRequired } =
-  schemaSlice.actions;
+export const {
+  addSchemaField,
+  toggleRequired,
+  deleteSchemaField,
+  isArrayChange,
+} = schemaSlice.actions;
 export default schemaSlice.reducer;
