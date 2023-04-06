@@ -1,14 +1,16 @@
-// component reponsible for rendering and modifying each field
+// component responsible for rendering and modifying each field
 // may need a unique ids for all elements
 // place
-
+import { useDispatch } from 'react-redux';
+import {
+  deleteSchemaField,
+  isArrayChange,
+} from '../../store/slices/schemaSlice';
 import utilityFunctions from '../../../utilities/utilities';
+
 export default function FieldComponent({ objectKey, objectValue }) {
-  // function snakeToCamel(snakeStr) {
-  //     const components = snakeStr.split('_');
-  //     // Capitalize the first letter of each component except the first one
-  //     return components[0] + components.slice(1).map(c => c.charAt(0).toUpperCase() + c.slice(1)).join('');
-  //   }
+  const dispatch = useDispatch();
+
   const { snakeToCamel } = utilityFunctions;
   // console.log(snakeToCamel(objectKey));
   // console.log(objectValue);
@@ -18,7 +20,6 @@ export default function FieldComponent({ objectKey, objectValue }) {
   const types = ['String', 'Int', 'Boolean', 'Float', 'Array', 'Object'];
   types.forEach((type) => {
     // Logic to set default fault to objectValue's type
-
     if (type === objectValue.value) {
       arrayOfOptions.push(
         <option value={type} selected>
@@ -35,7 +36,13 @@ export default function FieldComponent({ objectKey, objectValue }) {
       <span contentEditable='true'>{snakeToCamel(objectKey)}</span>:
       <select>{arrayOfOptions}</select>
       {/* <input type='text' id='fieldTextType' value={typeof objectValue}></input>         */}
-      <button id='arrayButton'>[ ]</button>
+      <button
+        id='arrayButton'
+        name='arrayButton'
+        onClick={() => dispatch(isArrayChange({ objectKey }))}
+      >
+        [ ]
+      </button>
       <button
         id='requiredButton'
         name='requiredButton'
@@ -46,7 +53,7 @@ export default function FieldComponent({ objectKey, objectValue }) {
       <button
         id='deleteField'
         name='deleteField'
-        onClick={() => console.log('clicked delete')}
+        onClick={() => dispatch(deleteSchemaField({ objectKey }))}
       >
         -
       </button>
