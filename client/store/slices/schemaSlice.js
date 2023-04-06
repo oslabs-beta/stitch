@@ -21,8 +21,19 @@ export const schemaSlice = createSlice({
       state.schemaFields[snakeToCamel(action.payload.objectKey)] =
         scalarParser(objectValue);
     },
+    toggleRequired: (state, action) => {
+      state.schemaFields[action.payload].requiredOption++;
+    },
+    deleteSchemaField: (state, action) => {
+      console.log(
+        'in delete schema field reducer, objectKey:',
+        action.payload.objectKey
+      );
+      delete state.schemaFields[action.payload.objectKey];
+    },
   },
 });
 
-export const { addSchemaField } = schemaSlice.actions;
+export const { addSchemaField, deleteSchemaField, toggleRequired } =
+  schemaSlice.actions;
 export default schemaSlice.reducer;

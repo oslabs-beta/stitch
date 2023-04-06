@@ -3,7 +3,13 @@
 // place
 
 import utilityFunctions from '../../../utilities/utilities';
+import { useDispatch } from 'react-redux';
+import {
+  deleteSchemaField,
+  toggleRequired,
+} from '../../store/slices/schemaSlice';
 export default function FieldComponent({ objectKey, objectValue }) {
+  const dispatch = useDispatch();
   // function snakeToCamel(snakeStr) {
   //     const components = snakeStr.split('_');
   //     // Capitalize the first letter of each component except the first one
@@ -32,21 +38,22 @@ export default function FieldComponent({ objectKey, objectValue }) {
   return (
     <div id='fieldbox'>
       {/* <input type='text' id='fieldTextName' value={objectKey} contentEditable="true"></input> */}
-      <span contentEditable='true'>{objectKey}</span>:
+      <span contentEditable='true'>{snakeToCamel(objectKey)}</span>:
+      {/* {if requiredOption === 1 {'!'}} */}
       <select>{arrayOfOptions}</select>
       {/* <input type='text' id='fieldTextType' value={typeof objectValue}></input>         */}
       <button id='arrayButton'>[ ]</button>
       <button
         id='requiredButton'
         name='requiredButton'
-        onClick={() => console.log('clicked requiredButton')}
+        onClick={() => dispatch(toggleRequired(objectKey))}
       >
         !
       </button>
       <button
         id='deleteField'
         name='deleteField'
-        onClick={() => console.log('clicked delete')}
+        onClick={() => dispatch(deleteSchemaField({ objectKey }))}
       >
         -
       </button>
