@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import utilityFunctions from '../../../utilities/utilities';
+import { createSlice } from "@reduxjs/toolkit";
+import utilityFunctions from "../../../utilities/utilities";
 const { scalarParser } = utilityFunctions;
 
 const initialState = {
@@ -7,13 +7,13 @@ const initialState = {
     // test: 'test123'
   },
   activeSchema: {
-    name: '',
+    name: "",
   },
   graphQL: {},
 };
 
 export const schemaSlice = createSlice({
-  name: 'schemaSlice',
+  name: "schemaSlice",
   initialState,
   reducers: {
     addSchemaField: (state, action) => {
@@ -22,8 +22,11 @@ export const schemaSlice = createSlice({
       const objectValue = action.payload.objectValue;
       state.schemaFields[action.payload.objectKey] = scalarParser(objectValue);
     },
+    toggleRequired: (state, action) => {
+      state.schemaFields[action.payload].requiredOption++;
+    },
   },
 });
 
-export const { addSchemaField } = schemaSlice.actions;
+export const { addSchemaField, toggleRequired } = schemaSlice.actions;
 export default schemaSlice.reducer;
