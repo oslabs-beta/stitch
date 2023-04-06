@@ -1,25 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
-import utilityFunctions from "../../../utilities/utilities";
-const { scalarParser } = utilityFunctions;
+import { createSlice } from '@reduxjs/toolkit';
+import utilityFunctions from '../../../utilities/utilities';
+const { scalarParser, snakeToCamel } = utilityFunctions;
 
 const initialState = {
   schemaFields: {
     // test: 'test123'
   },
   activeSchema: {
-    name: "",
+    name: '',
   },
   graphQL: {},
 };
 
 export const schemaSlice = createSlice({
-  name: "schemaSlice",
+  name: 'schemaSlice',
   initialState,
   reducers: {
     addSchemaField: (state, action) => {
-      // type of value
+      // come back to this - determine type of val
       const objectValue = action.payload.objectValue;
-      state.schemaFields[action.payload.objectKey] = scalarParser(objectValue);
+      state.schemaFields[snakeToCamel(action.payload.objectKey)] =
+        scalarParser(objectValue);
     },
     toggleRequired: (state, action) => {
       // if not an Array, we only have 2 options to cycle between (required or Not required)
