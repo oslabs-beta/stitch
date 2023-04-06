@@ -6,15 +6,15 @@ import AllSchemasContainer from './SchemaView/containers/allSchemasContainer';
 
 export default function App() {
   return (
-    <div>
-    <div className='headerContainer'>
-      <EndpointComponent />
+    <>
+      <div className='headerContainer'>
+        <EndpointComponent />
       </div>
-    <div className='bodyContainer'>
+      <div className='bodyContainer'>
         <IconTrayContainer />
         <JSONFieldContainer />
         <AllSchemasContainer />
-    </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -3,15 +3,20 @@
 // place
 import utilityFunctions from '../../../utilities/utilities';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import {
   deleteSchemaField,
   toggleRequired,
   isArrayChange,
 } from '../../store/slices/schemaSlice';
-import { useState } from 'react';
 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
+  // function snakeToCamel(snakeStr) {
+  //     const components = snakeStr.split('_');
+  //     // Capitalize the first letter of each component except the first one
+  //     return components[0] + components.slice(1).map(c => c.charAt(0).toUpperCase() + c.slice(1)).join('');
+  //   }
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
