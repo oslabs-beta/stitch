@@ -1,32 +1,13 @@
-// container for json response componenets and all associated functionality
+// container for json response componets and all associated functionality
 import JsonFieldComponent from './jsonFieldComponent';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { dataSlice } from '../store/slices/dataSlice'
-import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 export default function JSONFieldContainer() {
-  // const [jsonObject, setJsonObject] = useState({});
-  const jsonObject = useSelector((state) => state.responseData.activeEndpoint.responseBody);
-  const url = useSelector((state) => state.responseData.activeEndpoint.url)
+  const jsonObject = useSelector(
+    (state) => state.responseData.activeEndpoint.responseBody
+  );
+  const url = useSelector((state) => state.responseData.activeEndpoint.url);
   // console.log('printing json object', jsonObject);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-    // fetchData();
-  // },[]);
-
-  // async function fetchData() {
-  //   await axios
-  //     .get('/one')
-  //     .then((response) => response.data)
-  //     .then((object) => {
-  //       setJsonObject(object);
-  //     })
-  //     .catch((err) => {
-  //       console.log({ err });
-  //     });
-  // }
 
   const arrayOfComponents = [];
   for (const key in jsonObject) {
