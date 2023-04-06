@@ -9,11 +9,19 @@ export default function AllSchemasContainer() {
     schemaString += key + ' : ' + schema[key].value + ', ';
   }
   console.log(schemaString);
+
+  function handleCopy() {
+    console.log('test');
+    navigator.clipboard
+      .writeText(schemaString)
+      .then(() => console.log('copy successful'))
+      .catch((e) => console.log({ error: e, message: 'copy failed' }));
+  }
   return (
     <div className='allSchemasContainer'>
       <h1>Schema View</h1>
       <SchemaContainer />
-      <button>Copy Schema</button>
+      <button onClick={handleCopy}>Copy Schema</button>
     </div>
   );
 }
