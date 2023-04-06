@@ -4,7 +4,7 @@ import { addSchemaField } from "../store/slices/schemaSlice";
 
 export default function JsonFieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
-
+  
   return (
     <>
       <p>

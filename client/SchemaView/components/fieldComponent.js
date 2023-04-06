@@ -1,10 +1,10 @@
 // component reponsible for rendering and modifying each field
 // may need a unique ids for all elements
 // place
-import { useDispatch } from "react-redux";
-import { deleteSchemaField } from "../../store/slices/schemaSlice"; 
-import utilityFunctions from '../../../utilities/utilities';
 
+import utilityFunctions from '../../../utilities/utilities';
+import { useDispatch } from 'react-redux';
+import { deleteSchemaField, toggleRequired } from "../../store/slices/schemaSlice"; 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch(); 
   // function snakeToCamel(snakeStr) {
@@ -36,13 +36,14 @@ export default function FieldComponent({ objectKey, objectValue }) {
     <div id='fieldbox'>
       {/* <input type='text' id='fieldTextName' value={objectKey} contentEditable="true"></input> */}
       <span contentEditable='true'>{snakeToCamel(objectKey)}</span>:
+      {/* {if requiredOption === 1 {'!'}} */}
       <select>{arrayOfOptions}</select>
       {/* <input type='text' id='fieldTextType' value={typeof objectValue}></input>         */}
       <button id='arrayButton'>[ ]</button>
       <button
         id='requiredButton'
         name='requiredButton'
-        onClick={() => console.log('clicked requiredButton')}
+        onClick={() => dispatch(toggleRequired(objectKey))}
       >
         !
       </button>
