@@ -17,7 +17,7 @@ export const schemaSlice = createSlice({
   initialState,
   reducers: {
     addSchemaField: (state, action) => {
-      // come back to this - determine type of val
+      // type of value
       const objectValue = action.payload.objectValue;
       state.schemaFields[action.payload.objectKey] = scalarParser(objectValue);
     },
@@ -25,11 +25,22 @@ export const schemaSlice = createSlice({
       state.schemaFields[action.payload].requiredOption++;
     },
     deleteSchemaField: (state, action) => {
-      console.log('in delete schema field reducer, objectKey:', action.payload.objectKey)
-      delete state.schemaFields[action.payload.objectKey]; 
-    }
+      console.log(
+        'in delete schema field reducer, objectKey:',
+        action.payload.objectKey
+      );
+      delete state.schemaFields[action.payload.objectKey];
+    },
+    isArrayChange: (state, action) => {
+      if (!state.schemaFields[action.payload.objectKey].isArray) {
+        state.schemaFields[action.payload.objectKey].isArray = true;
+      } else {
+        state.schemaFields[action.payload.objectKey].isArray = false;
+      }
+    },
   },
 });
 
-export const { addSchemaField, deleteSchemaField, toggleRequired } = schemaSlice.actions;
+export const { addSchemaField, toggleRequired, deleteSchemaField, isArrayChange } =
+  schemaSlice.actions;
 export default schemaSlice.reducer;
