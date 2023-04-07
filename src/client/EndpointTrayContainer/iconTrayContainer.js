@@ -1,7 +1,7 @@
 // tray containing all endpoints queried
 import EndpointIcon from './endpointIcon';
-import { useSelector, useDispatch } from 'react-redux'
-import { dataSlice } from '../store/slices/dataSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import { dataSlice } from '../store/slices/dataSlice';
 
 export default function IconTrayContainer() {
   // Pulling in global endpoint state object
@@ -21,10 +21,10 @@ export default function IconTrayContainer() {
     );
   }
 
-    return (
-      <div className='iconTrayContainer'>
-        {/* <EndpointIcon /> */}
-        {arrayOfComponents}
-      </div>
-    );
-  }
+  return (
+    <div className='iconTrayContainer'>
+      {/* <EndpointIcon /> */}
+      {arrayOfComponents}
+    </div>
+  );
+}

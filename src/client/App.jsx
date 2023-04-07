@@ -6,7 +6,7 @@ import AllSchemasContainer from './SchemaView/containers/allSchemasContainer';
 
 export default function App() {
   return (
-    <>
+    <div className=''>
       <div className='headerContainer'>
         <EndpointComponent />
       </div>
@@ -15,6 +15,6 @@ export default function App() {
         <JSONFieldContainer />
         <AllSchemasContainer />
       </div>
-    </>
+    </div>
   );
 }

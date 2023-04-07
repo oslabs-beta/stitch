@@ -1,4 +1,8 @@
-.stitch {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .stitch {
   font-style: italic;
 }
 .bodyContainer {
@@ -48,4 +52,4 @@
 
 #typebox > span {
   margin-inline: 10px;
-}
+} */

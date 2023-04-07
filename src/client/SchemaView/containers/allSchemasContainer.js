@@ -8,10 +8,9 @@ export default function AllSchemasContainer() {
   for (const key in schema) {
     schemaString += key + ' : ' + schema[key].value + ', ';
   }
-  console.log(schemaString);
   //   const schemas = [];
   function handleCopy() {
-    console.log('test');
+    // console.log('test');
     navigator.clipboard
       .writeText(schemaString)
       .then(() => {
