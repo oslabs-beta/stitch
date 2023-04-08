@@ -1,6 +1,6 @@
 {
   "name": "stitch-ql",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight graphQL schema generation tool",
   "main": "index.js",
   "scripts": {
