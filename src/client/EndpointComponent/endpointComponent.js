@@ -20,11 +20,11 @@ export default function EndpointComponent() {
   return (
     <>
       <div className='flex flex-row gap-6 pt-8 pl-5 w-3/5'>
-        <h1 className='font-display text-6xl pt-1 text-colorHunt-quatrinary'>
+        <h1 className='font-display text-6xl pt-1 pr-5 text-colorHunt-quatrinary'>
           Stitch
         </h1>
         <input
-          className='w-11/12 rounded-full bg-colorHunt-tertiary h-12 pl-5 placeholder:italic focus:outline-none'
+          className='w-7/12 rounded-full bg-colorHunt-tertiary h-12 pl-6 placeholder:italic focus:outline-none'
           type='text'
           onChange={handleChange}
           placeholder={inputText}
