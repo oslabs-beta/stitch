@@ -19,24 +19,30 @@ export default function EndpointComponent() {
 
   return (
     <>
-      <div>
+      <div className='flex flex-row gap-6 pt-8 pl-5 w-3/5'>
+        <h1 className='font-display text-6xl pt-1 text-colorHunt-quatrinary'>
+          Stitch
+        </h1>
         <input
-          className='EndpointComponent'
+          className='w-11/12 rounded-full bg-colorHunt-tertiary h-12 pl-5 placeholder:italic focus:outline-none'
           type='text'
           onChange={handleChange}
           placeholder={inputText}
         />
-        <button onClick={() => dispatch(addDataCard(inputText))} name='submit'>
+        <button
+          className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white'
+          onClick={() => dispatch(addDataCard(inputText))}
+          name='submit'
+        >
           Add
         </button>
-        <p>https://swapi.dev/api/people/1/</p>
-        <p>https://swapi.dev/api/vehicles/4/</p>
-        <p>https://swapi.dev/api/planets/1/</p>
-        <p>https://swapi.dev/api/starships/9/</p>
+        {/* <span>https://swapi.dev/api/people/1/</span> */}
+        {/* <span>https://swapi.dev/api/people/1/</span>
+        <span>https://swapi.dev/api/vehicles/4/</span>
+        <span>https://swapi.dev/api/planets/1/</span>
+        <span>https://swapi.dev/api/starships/9/</span> */}
       </div>
-      <div>
-        <h1 className='stitch'>Stitch</h1>
-      </div>
+      <div></div>
     </>
   );
 }
