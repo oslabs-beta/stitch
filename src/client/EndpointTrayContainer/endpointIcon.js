@@ -10,7 +10,7 @@ function EndpointIcon({ endpointURL }) {
   return (
     <>
       <button
-        className='bg-space-jet h-10 rounded ml-5 mr-5 mb-5 first:mt-5'
+        className=' bg-desert-gray hover:bg-space-jet h-10 rounded ml-5 mr-5 mb-5 first:mt-5'
         onClick={() => dispatch(updateActiveEndpoint(endpointURL))}
       >
         {endpointURL}

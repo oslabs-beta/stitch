@@ -36,7 +36,7 @@ export default function EndpointComponent() {
         >
           Add
         </button>
-        {/* <span>https://swapi.dev/api/people/1/</span> */}
+        <span>https://swapi.dev/api/people/1/</span>
         {/* <span>https://swapi.dev/api/people/1/</span>
         <span>https://swapi.dev/api/vehicles/4/</span>
         <span>https://swapi.dev/api/planets/1/</span>

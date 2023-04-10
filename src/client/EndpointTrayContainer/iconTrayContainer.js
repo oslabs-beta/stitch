@@ -22,7 +22,7 @@ export default function IconTrayContainer() {
   }
 
   return (
-    <div className='bg-colorHunt-secondary basis-1/5 flex flex-col border-r-2 border-r-colorHunt-primary col-span-1 '>
+    <div className='bg-colorHunt-secondary basis-1/5 flex flex-col grow-0 border-r-2 border-r-colorHunt-primary col-span-1 '>
       {/* <EndpointIcon /> */}
       {arrayOfComponents}
     </div>

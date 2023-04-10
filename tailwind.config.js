@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     fontFamily: {
       display: ['La Belle Aurore', 'cursive'],
+      monospace: ['Source Code Pro', 'monospace'],
     },
     extend: {},
     colors: {
@@ -51,6 +52,21 @@ module.exports = {
         secondary: '#414141',
         tertiary: '#313131',
         quatrinary: '#EC625F',
+      },
+      vscode: {
+        background: '#1E1E1E',
+        foreground: '#D4D4D4',
+        selection: '#3E3E3E',
+        comment: '#6A9955',
+        red: '#D16969',
+        orange: '#D7BA7D',
+        darkOrange: '#B37f6A',
+        yellow: '#f3cd02',
+        green: '#4E9A06',
+        cyan: '#69B7F0',
+        blue: '#569CD6',
+        purple: '#C586C0',
+        pink: '#D44796',
       },
     },
   },
