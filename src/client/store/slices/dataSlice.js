@@ -7,6 +7,9 @@ const initialState = {
     url: '',
     responseBody: {},
   },
+  activeUserGithubInfo: {
+    
+  },
 }
 
 export const addDataCard = createAsyncThunk(
