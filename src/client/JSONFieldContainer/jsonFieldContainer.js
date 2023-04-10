@@ -24,7 +24,7 @@ export default function JSONFieldContainer() {
   }
 
   return (
-    <div className='JSONFieldContainer'>
+    <div className='bg-colorHunt-secondary border-r-2 border-r-colorHunt-primary basis-2/5 flex flex-col col-span-2 overflow-auto'>
       <h1>JSON Response</h1>
       <h3>{url}</h3>
       <p>{'{'}</p>

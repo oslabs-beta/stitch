@@ -7,7 +7,8 @@ const initialState = {
     name: "",
   },
   schemaFields: {
-    // test: 'test123'
+    type: '',
+    fields: {},
   },
   activeSchema: {
     name: "",

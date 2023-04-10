@@ -10,11 +10,9 @@ export default function AllSchemasContainer() {
   for (const key in schema) {
     schemaString += "\n\t" + key + " : " + schema[key].value + ", ";
   }
-  schemaString += "\n}";
-  console.log(schemaString);
   //   const schemas = [];
   function handleCopy() {
-    console.log("test");
+    // console.log('test');
     navigator.clipboard
       .writeText(schemaString)
       .then(() => {
@@ -27,7 +25,7 @@ export default function AllSchemasContainer() {
       .catch((e) => console.log({ error: e, message: "copy failed" }));
   }
   return (
-    <div className="allSchemasContainer">
+    <div className='bg-colorHunt-secondary basis-2/5 flex flex-col col-span-2'>
       <h1>Schema View</h1>
       <SchemaContainer />
       <button className="copyButton" onClick={handleCopy}>
