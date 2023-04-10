@@ -4,11 +4,7 @@
 import utilityFunctions from '../../../utilities/utilities';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import {
-  deleteSchemaField,
-  toggleRequired,
-  isArrayChange,
-} from '../../store/slices/schemaSlice';
+import { deleteSchemaField, toggleRequired, isArrayChange } from '../../store/slices/schemaSlice';
 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();

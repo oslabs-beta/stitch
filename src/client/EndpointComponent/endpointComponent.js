@@ -36,7 +36,13 @@ export default function EndpointComponent() {
         >
           Add
         </button>
-        <span>https://swapi.dev/api/people/1/</span>
+        <a
+          className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white text-xs text-center py-2'
+          href='/auth/github'
+        >
+          {'Login with Github'}
+        </a>
+        {/* <span>https://swapi.dev/api/people/1/</span> */}
         {/* <span>https://swapi.dev/api/people/1/</span>
         <span>https://swapi.dev/api/vehicles/4/</span>
         <span>https://swapi.dev/api/planets/1/</span>

@@ -1,6 +1,6 @@
 {
   "name": "stitch-ql",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A lightweight graphQL schema generation tool",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,9 @@
   "homepage": "https://github.com/oslabs-beta/stitch#readme",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
+    "axios": "^1.3.5",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "node": "^19.8.1",
     "react": "^18.2.0",
