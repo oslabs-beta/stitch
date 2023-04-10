@@ -1,21 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
-import utilityFunctions from '../../../utilities/utilities';
+import { createSlice } from "@reduxjs/toolkit";
+import utilityFunctions from "../../../utilities/utilities";
 const { scalarParser, snakeToCamel } = utilityFunctions;
 
 const initialState = {
+  typeName: {
+    name: "",
+  },
   schemaFields: {
     // test: 'test123'
   },
   activeSchema: {
-    name: '',
+    name: "",
   },
   graphQL: {},
 };
 
 export const schemaSlice = createSlice({
-  name: 'schemaSlice',
+  name: "schemaSlice",
   initialState,
   reducers: {
+    setTypeName: (state, action) => {
+      console.log('This be Typename: ', action.payload);
+      state.typeName = action.payload;
+      console.log('This be Typename in State: ', state.typeName);
+    },
     addSchemaField: (state, action) => {
       // come back to this - determine type of val
       const objectValue = action.payload.objectValue;
@@ -63,6 +71,7 @@ export const schemaSlice = createSlice({
 });
 
 export const {
+  setTypeName,
   addSchemaField,
   toggleRequired,
   deleteSchemaField,
