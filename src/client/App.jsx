@@ -10,7 +10,7 @@ export default function App() {
       <div className='bg-colorHunt-secondary flex flex-row h-28 border-b-2 border-b-colorHunt-primary'>
         <EndpointComponent />
       </div>
-      <div className='flex flex-row h-5/6'>
+      <div className='flex flex-row h-full'>
         <IconTrayContainer />
         <JSONFieldContainer />
         <AllSchemasContainer />
