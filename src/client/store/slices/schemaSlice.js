@@ -4,7 +4,8 @@ const { scalarParser, snakeToCamel } = utilityFunctions;
 
 const initialState = {
   schemaFields: {
-    // test: 'test123'
+    type: '',
+    fields: {},
   },
   activeSchema: {
     name: '',
