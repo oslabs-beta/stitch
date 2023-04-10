@@ -39,11 +39,13 @@ export default function FieldComponent({ objectKey, objectValue }) {
     }
   });
   return (
-    <div id='fieldbox'>
+    <div>
       {/* <input type='text' id='fieldTextName' value={objectKey} contentEditable="true"></input> */}
       <span contentEditable='true'>{snakeToCamel(objectKey)}</span>:
       {/* {if requiredOption === 1 {'!'}} */}
-      <select>{arrayOfOptions}</select>
+      <select className='bg-transparent underline underline-offset-4 decoration-desert-ash'>
+        {arrayOfOptions}
+      </select>
       {/* <input type='text' id='fieldTextType' value={typeof objectValue}></input>         */}
       <button
         id='arrayButton'
