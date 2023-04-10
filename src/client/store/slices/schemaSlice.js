@@ -7,8 +7,8 @@ const initialState = {
     name: "",
   },
   schemaFields: {
-    type: '',
-    fields: {},
+    // type: '',
+    // fields: {},
   },
   activeSchema: {
     name: "",
