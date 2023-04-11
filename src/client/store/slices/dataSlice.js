@@ -41,33 +41,25 @@ export const dataSlice = createSlice({
         responseBody: state.endpointData[action.payload],
       }
     },
+    setActiveUserGithubInfo: (state, action) => {
+      console.log('in reducer');
+      state.activeUserGithubInfo = {
+        login: action.login,
+        id: action.id,
+        accessToken: action.accessToken,
+      }
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(addDataCard.fulfilled, (state, action) => {
-      // console.log("action", action);
-      // console.log("action.meta", action.meta);
-      // console.log("action.meta.arg", action.meta.arg);
       state.endpointData[action.meta.arg] = action.payload;
       state.activeEndpoint = {
         url: action.meta.arg,
         responseBody: action.payload
       };
-      // console.log(action.payload);
-      // console.log()
-      // console.log(state.endpointData);
     });
   }
 })
-
-
-// // async thunk logic here
-// export const fetchUsersAsync = createAsyncThunk(
-  //   'addDataCard',
-  //   async (url) => {
-    //     const response = await fetch();
-    //     return response.data;
-    //   }
-    // );
     
-export const { updateActiveEndpoint } = dataSlice.actions
+export const { updateActiveEndpoint, setActiveUserGithubInfo } = dataSlice.actions
 export default dataSlice.reducer;
