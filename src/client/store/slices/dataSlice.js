@@ -1,25 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
-  endpointData: {
-  },
+  endpointData: {},
   activeEndpoint: {
     url: '',
     responseBody: {},
   },
-}
+};
 
 export const addDataCard = createAsyncThunk(
   'responseData/addDataCard',
   async (url) => {
-    const request = await fetch('/postURL', {
-      method: 'POST',
+    const request = await fetch(url, {
+      method: 'get',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify({url}),
+      // body: JSON.stringify({ url }),
     });
-    const data = await request.json()
+    const data = await request.json();
     // console.log('in reducer', data);
     return data;
   }
@@ -30,13 +29,13 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {
     updateActiveEndpoint: (state, action) => {
-      console.log('in update active endpoint reducer')
+      console.log('in update active endpoint reducer');
       // console.log({action})
 
       state.activeEndpoint = {
         url: action.payload,
         responseBody: state.endpointData[action.payload],
-      }
+      };
     },
   },
   extraReducers: (builder) => {
@@ -47,24 +46,23 @@ export const dataSlice = createSlice({
       state.endpointData[action.meta.arg] = action.payload;
       state.activeEndpoint = {
         url: action.meta.arg,
-        responseBody: action.payload
+        responseBody: action.payload,
       };
       // console.log(action.payload);
       // console.log()
       // console.log(state.endpointData);
     });
-  }
-})
-
+  },
+});
 
 // // async thunk logic here
 // export const fetchUsersAsync = createAsyncThunk(
-  //   'addDataCard',
-  //   async (url) => {
-    //     const response = await fetch();
-    //     return response.data;
-    //   }
-    // );
-    
-export const { updateActiveEndpoint } = dataSlice.actions
+//   'addDataCard',
+//   async (url) => {
+//     const response = await fetch();
+//     return response.data;
+//   }
+// );
+
+export const { updateActiveEndpoint } = dataSlice.actions;
 export default dataSlice.reducer;

@@ -11,7 +11,7 @@ export default function EndpointComponent() {
   // Using react state management for Input field text.  No need to store globally in store.
   // const [inputFieldData, setinputFieldData] = useState('enter endpoints');
   // let inputText = 'enter endpoints';
-  let inputText = 'https://swapi.dev/api/vehicles/4/';
+  let inputText = '';
 
   function handleChange(event) {
     inputText = event.target.value;
