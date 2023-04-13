@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const dataController = require('./controllers/dataController');
 const authController = require('./controllers/authController');
 const cookieController = require('./controllers/cookieController');
+const dbController = require('./controllers/dbController');
 const PORT = 3000;
 
 // ENVIRONMENT VARIABLES
@@ -41,8 +42,9 @@ app.get(
   authController.getGithubUserInfo,
   cookieController.setCookie,
   dataController.setGitHubUserInfo,
+  dbController.addGithubUser,
   (req, res) => {
-    console.log('user data', res.locals.userData);
+    // console.log('user data', res.locals.userData);
     return res.status(200).redirect('/');
 })
 
