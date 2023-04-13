@@ -7,9 +7,7 @@ export default function JsonFieldComponent({ objectKey, objectValue }) {
 
   return (
     <>
-      <p className='pl-8 pt-1 pb-1 flex hover:bg-vscode-selection font-monospace'>
-        {/* "{objectKey}" : {typeof objectValue === 'object' ? 'object' : objectValue}<button>add</button> */}
-        {/* "{objectKey}" : {typeof objectValue}<button>add</button> */}
+      <div className='pl-8 pt-1 pb-1 flex hover:bg-vscode-selection font-monospace'>
         <div className='basis-5/6 overflow-auto '>
           <span className='text-vscode-foreground'>"</span>
           <span className='text-vscode-cyan'>{objectKey}</span>
@@ -25,7 +23,7 @@ export default function JsonFieldComponent({ objectKey, objectValue }) {
         >
           add
         </button>
-      </p>
+      </div>
     </>
   );
 }

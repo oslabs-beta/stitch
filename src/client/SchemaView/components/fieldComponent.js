@@ -4,15 +4,14 @@
 import utilityFunctions from '../../../utilities/utilities';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { deleteSchemaField, toggleRequired, isArrayChange } from '../../store/slices/schemaSlice';
+import {
+  deleteSchemaField,
+  toggleRequired,
+  isArrayChange,
+} from '../../store/slices/schemaSlice';
 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
-  // function snakeToCamel(snakeStr) {
-  //     const components = snakeStr.split('_');
-  //     // Capitalize the first letter of each component except the first one
-  //     return components[0] + components.slice(1).map(c => c.charAt(0).toUpperCase() + c.slice(1)).join('');
-  //   }
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -20,14 +19,10 @@ export default function FieldComponent({ objectKey, objectValue }) {
   };
 
   const { snakeToCamel } = utilityFunctions;
-  // console.log(snakeToCamel(objectKey));
-  // console.log(objectValue);
-  // console.log('scalarParser', scalarParser(objectValue));
 
   const arrayOfOptions = [];
   const types = ['String', 'Int', 'Boolean', 'Float', 'Array', 'Object'];
   types.forEach((type) => {
-    // Logic to set default fault to objectValue's type
     if (type === objectValue.value) {
       arrayOfOptions.push(
         <option value={type} selected>
@@ -39,35 +34,39 @@ export default function FieldComponent({ objectKey, objectValue }) {
     }
   });
   return (
-    <div>
-      {/* <input type='text' id='fieldTextName' value={objectKey} contentEditable="true"></input> */}
-      <span contentEditable='true'>{snakeToCamel(objectKey)}</span>:
-      {/* {if requiredOption === 1 {'!'}} */}
-      <select className='bg-transparent underline underline-offset-4 decoration-desert-ash'>
+    <div className='pl-8 pt-1 pb-1 font-monospace flex flex-row justify-center'>
+      <span className='text-vscode-cyan basis-24' contentEditable='true'>
+        {snakeToCamel(objectKey)}
+      </span>
+      <span className='pr-4'>:</span>
+      <select className='text-vscode-green bg-transparent border-b-2 border-desert-ash mr-24'>
         {arrayOfOptions}
       </select>
-      {/* <input type='text' id='fieldTextType' value={typeof objectValue}></input>         */}
-      <button
-        id='arrayButton'
-        name='arrayButton'
+      {/* <button
+        id='array-button'
+        className=''
         onClick={handleClick}
-        style={{ backgroundColor: active ? 'green' : 'buttonface' }}
+        style={{
+          backgroundColor: active
+            ? document
+                .querySelector('#array-button')
+                .classList.add('bg-desert-green')
+            : 'buttonface',
+        }}
       >
-        [ ]
-      </button>
+        []
+      </button> */}
       <button
-        id='requiredButton'
-        name='requiredButton'
+        className='bg-midnight-glaucous rounded-md pl-2 pr-2 mr-2'
         onClick={() => dispatch(toggleRequired(objectKey))}
       >
-        !
+        required
       </button>
       <button
-        id='deleteField'
-        name='deleteField'
+        className='pl-2 pr-2 rounded-md bg-colorHunt-quatrinary'
         onClick={() => dispatch(deleteSchemaField({ objectKey }))}
       >
-        -
+        delete
       </button>
     </div>
   );
