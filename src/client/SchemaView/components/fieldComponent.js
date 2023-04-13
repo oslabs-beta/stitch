@@ -58,13 +58,13 @@ export default function FieldComponent({ objectKey, objectValue }) {
         []
       </button> */}
       <button
-        className='bg-midnight-glaucous rounded-md pl-2 pr-2 mr-2'
+        className='bg-midnight-glaucous hover:bg-midnight-glaucousDark rounded-md pl-2 pr-2 mr-2'
         onClick={() => dispatch(toggleRequired(objectKey))}
       >
         required
       </button>
       <button
-        className='pl-2 pr-2 rounded-md bg-colorHunt-quatrinary'
+        className='pl-2 pr-2 rounded-md bg-colorHunt-quatrinary hover:bg-colorHunt-quatrinaryDark'
         onClick={() => dispatch(deleteSchemaField({ objectKey }))}
       >
         delete

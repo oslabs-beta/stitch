@@ -40,6 +40,7 @@ module.exports = {
         fuchsia: '#BC577Fff',
         goldenrod: '#AE781Aff',
         glaucous: '#737CB3ff',
+        glaucousDark: '#5a628e',
         seagreen: '#2D8E50ff',
         denim: '#3663B1ff',
       },
@@ -52,6 +53,7 @@ module.exports = {
         secondary: '#414141',
         tertiary: '#313131',
         quatrinary: '#EC625F',
+        quatrinaryDark: '#9b4644',
       },
       vscode: {
         background: '#1E1E1E',
