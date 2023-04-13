@@ -10,7 +10,7 @@ const dataController = {
       return next();
     } catch {
       return next({
-        log: 'Express error handler caught error in dataController.pokemon',
+        log: 'Express error handler caught error in dataController.getUrlResponse',
         status: 500,
         message: { err: 'Failed to get data' },
       });
