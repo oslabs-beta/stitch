@@ -12,6 +12,7 @@ import {
 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
+
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);

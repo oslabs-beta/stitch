@@ -5,8 +5,16 @@ import EndpointIcon from '../EndpointTrayContainer/endpointIcon';
 // Added the 2 below imports and will need to implement logic
 import { useDispatch } from 'react-redux';
 import { addDataCard } from '../store/slices/dataSlice';
+// Import react-cookie to check for github and local storage cookies
+import { useCookies } from 'react-cookie';
 
 export default function EndpointComponent() {
+  const [cookies, setCookie, removeCookie] = useCookies([
+    'ghInfoUser',
+    'ghInfoID',
+    'ghToken',
+  ]);
+  console.log(cookies);
   const dispatch = useDispatch();
   // Using react state management for Input field text.  No need to store globally in store.
   // const [inputFieldData, setinputFieldData] = useState('enter endpoints');
@@ -15,6 +23,13 @@ export default function EndpointComponent() {
 
   function handleChange(event) {
     inputText = event.target.value;
+  }
+
+  function handleLogout(event) {
+    removeCookie('ghInfoUser');
+    removeCookie('ghInfoID');
+    removeCookie('ghToken');
+    window.location.reload();
   }
 
   return (
@@ -36,12 +51,36 @@ export default function EndpointComponent() {
         >
           Add
         </button>
-        <a
-          className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-vscode-foreground w-24 rounded-md text-white text-xs text-center py-2'
+        {cookies.ghInfoID ? (
+          // Render this if a user is already logged in
+          <div className='flex'>
+            <button
+              className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white text-s text-center py-2.5 px-2'
+              onClick={handleLogout}
+            >
+              {'Logout'}
+            </button>
+            <span className='mx-3'>{`Welcome, ${cookies.ghInfoUser}`} </span>
+          </div>
+        ) : (
+          // If not render login button
+          <div>
+            <a
+              className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white text-center py-3 px-2 mx-2'
+              href='/auth/github'
+            >
+              {'Login'}{' '}
+              <img src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
+            </a>
+          </div>
+        )}
+        {/* <a
+          className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white text-xs text-center py-2'
           href='/auth/github'
         >
           {'Login with Github'}
-        </a>
+        </a>{' '}
+        */}
         {/* <span>https://swapi.dev/api/people/1/</span> */}
         {/* <span>https://swapi.dev/api/people/1/</span>
         <span>https://swapi.dev/api/vehicles/4/</span>

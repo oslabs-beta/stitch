@@ -40,17 +40,11 @@ export const dataSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addDataCard.fulfilled, (state, action) => {
-      // console.log("action", action);
-      // console.log("action.meta", action.meta);
-      // console.log("action.meta.arg", action.meta.arg);
       state.endpointData[action.meta.arg] = action.payload;
       state.activeEndpoint = {
         url: action.meta.arg,
         responseBody: action.payload,
       };
-      // console.log(action.payload);
-      // console.log()
-      // console.log(state.endpointData);
     });
   },
 });
