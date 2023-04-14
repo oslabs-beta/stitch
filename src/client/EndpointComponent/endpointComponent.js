@@ -116,7 +116,7 @@ export default function EndpointComponent() {
               placeholder={viewName}
             />
             <button
-              className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white mx-2'
+              className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white mx-2'
               onClick={() =>
                 dispatch(saveGithubView({ viewName, id: cookies.ghInfoID }))
               }
@@ -125,7 +125,7 @@ export default function EndpointComponent() {
             >
               Save
             </button>
-            <select className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white mx-2 text-sm'>
+            <select className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white mx-2 text-sm'>
               {savedViews.views}
               {/* <option value={'Load View'} selected>
                 {'Load View'}
@@ -134,7 +134,7 @@ export default function EndpointComponent() {
               <option value={'Test 2'}>{'Test 2'}</option> */}
             </select>
             <button
-              className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white text-s text-center py-2.5 px-2'
+              className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white text-s text-center py-2.5 px-2'
               onClick={handleLogout}
             >
               {'Logout'}
