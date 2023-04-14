@@ -55,7 +55,7 @@ app.get(
 // Get saved views of github user
 app.get('/api/githubdata', dbController.getSavedViews, (req, res) => {
   console.log(res.locals.savedViews);
-  return res.status(200).json('received get request');
+  return res.status(200).json(res.locals.savedViews);
 })
 
 // Save state to users github document

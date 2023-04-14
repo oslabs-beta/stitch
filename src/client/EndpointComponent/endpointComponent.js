@@ -4,7 +4,7 @@ import EndpointIcon from '../EndpointTrayContainer/endpointIcon';
 // this component will create an EndpointIcon component and then render it on the iconTryContainer componenet
 // Added the 2 below imports and will need to implement logic
 import { useDispatch } from 'react-redux';
-import { addDataCard, saveGithubView } from '../store/slices/dataSlice';
+import { addDataCard, saveGithubView, storeGithubUserViews } from '../store/slices/dataSlice';
 // Import react-cookie to check for github and local storage cookies
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -36,25 +36,35 @@ export default function EndpointComponent() {
     removeCookie('ghInfoID');
     removeCookie('ghToken');
     window.location.reload();
-    removeCookie('ghInfoUser');
-    removeCookie('ghInfoID');
-    removeCookie('ghToken');
-    window.location.reload();
   }
 
   const savedViews = [];
+
   // Create async function to retreive saved state if user is logged in
   const getSavedViews = async () => {
+    await setTimeout(null, 500)
     if (!cookies.ghInfoID) {
       return;
     } else {
+      console.log('in else')
       // Send call to Express to get user data based on
       const request = await axios.get('/api/githubdata', {
         headers: { Accept: 'application/json' },
         params: { id: cookies.ghInfoID },
       });
+
+      // Pre-save views to state
+      dispatch(storeGithubUserViews(request));
+      // Update Load View component with saved views
+      request.data.forEach((obj) => {
+        let viewName = obj.snapshot.viewName
+        savedViews.push(viewName)
+      })
+      // console.log(request.data);
     }
   };
+
+  getSavedViews();
 
   return (
     <>
@@ -86,7 +96,9 @@ export default function EndpointComponent() {
             />
             <button
               className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white mx-2'
-              onClick={() => dispatch(saveGithubView({viewName, id: cookies.ghInfoID}))}
+              onClick={() =>
+                dispatch(saveGithubView({ viewName, id: cookies.ghInfoID }))
+              }
               // onClick={() => console.log('clicked save button')}
               // name='submit'
             >

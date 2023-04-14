@@ -50,7 +50,8 @@ const dbController = {
       const { id } = req.query;
       const savedViews = await githubUser.find({ githubUserID: id });
       // console.log(savedViews)
-      res.locals.savedViews = savedViews;
+      res.locals.savedViews = savedViews[0].githubUserState;
+      console.log('res locals', res.locals.savedViews);
       return next();
     } catch {
       return next({
