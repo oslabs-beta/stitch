@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {
-  endpointData: {
-  },
+  endpointData: {},
   activeEndpoint: {
     url: '',
     responseBody: {},
   },
+};
+
 }
 
 export const addDataCard = createAsyncThunk(
@@ -15,7 +16,7 @@ export const addDataCard = createAsyncThunk(
     const request = await fetch('/postURL', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({url}),
     });
@@ -48,22 +49,14 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {
     updateActiveEndpoint: (state, action) => {
-      console.log('in update active endpoint reducer')
+      console.log('in update active endpoint reducer');
       // console.log({action})
 
       state.activeEndpoint = {
         url: action.payload,
         responseBody: state.endpointData[action.payload],
-      }
+      };
     },
-    setActiveUserGithubInfo: (state, action) => {
-      console.log('in reducer');
-      state.activeUserGithubInfo = {
-        login: action.login,
-        id: action.id,
-        accessToken: action.accessToken,
-      }
-    }
   },
   extraReducers: (builder) => {
     // Add Data Card Promise Resolve Handler
@@ -71,7 +64,7 @@ export const dataSlice = createSlice({
       state.endpointData[action.meta.arg] = action.payload;
       state.activeEndpoint = {
         url: action.meta.arg,
-        responseBody: action.payload
+        responseBody: action.payload,
       };
     });
     // Save View Promise Resolve Handler

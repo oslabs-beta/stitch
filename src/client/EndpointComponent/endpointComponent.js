@@ -36,6 +36,10 @@ export default function EndpointComponent() {
     removeCookie('ghInfoID');
     removeCookie('ghToken');
     window.location.reload();
+    removeCookie('ghInfoUser');
+    removeCookie('ghInfoID');
+    removeCookie('ghToken');
+    window.location.reload();
   }
 
   const savedViews = [];
@@ -59,13 +63,13 @@ export default function EndpointComponent() {
           Stitch
         </h1>
         <input
-          className='w-7/12 rounded-full bg-colorHunt-tertiary h-12 pl-6 placeholder:italic focus:outline-none'
+          className='w-7/12 rounded-md bg-colorHunt-tertiary h-12 pl-6 placeholder:italic focus:outline-none'
           type='text'
           onChange={handleChange}
           placeholder={inputText}
         />
         <button
-          className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white'
+          className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-vscode-foreground w-24 rounded-md text-white'
           onClick={() => dispatch(addDataCard(inputText))}
           name='submit'
         >
@@ -113,6 +117,8 @@ export default function EndpointComponent() {
             >
               {'Login'}{' '}
               <img src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
+              {'Login'}{' '}
+              <img src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
             </a>
           </div>
         )}
@@ -121,10 +127,3 @@ export default function EndpointComponent() {
     </>
   );
 }
-/*
-  const toRender = urls.map((url) => {
-    return <ImageComponent key={Math.random() + Date.now()} imgUrl={url} />;
-  });
-
-  return <div className="galleryContainer">{toRender}</div>;
-  */
