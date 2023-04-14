@@ -6,6 +6,9 @@ const initialState = {
     url: '',
     responseBody: {},
   },
+  githubUserSavedViews: {
+
+  }
 };
 
 export const addDataCard = createAsyncThunk(
@@ -54,6 +57,14 @@ export const dataSlice = createSlice({
         responseBody: state.endpointData[action.payload],
       };
     },
+    storeGithubUserViews: (state, action) => {
+      console.log('in update active endpoint reducer');
+      // console.log({action})
+
+      state.githubUserSavedViews = {
+        data: action.payload,
+      };
+    },
   },
   extraReducers: (builder) => {
     // Add Data Card Promise Resolve Handler
@@ -76,5 +87,5 @@ export const dataSlice = createSlice({
   }
 })
     
-export const { updateActiveEndpoint, setActiveUserGithubInfo } = dataSlice.actions
+export const { updateActiveEndpoint, setActiveUserGithubInfo, storeGithubUserViews } = dataSlice.actions
 export default dataSlice.reducer;
