@@ -20,7 +20,7 @@ export default function EndpointComponent() {
   // Using react state management for Input field text.  No need to store globally in store.
   // const [inputFieldData, setinputFieldData] = useState('enter endpoints');
   // let inputText = 'enter endpoints';
-  let inputText = 'https://swapi.dev/api/vehicles/4/';
+  let inputText = '';
   let viewName = 'Save Current View';
 
   function handleChange(event) {
@@ -115,8 +115,6 @@ export default function EndpointComponent() {
               className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white text-center py-3 px-2 mx-2'
               href='/auth/github'
             >
-              {'Login'}{' '}
-              <img src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
               {'Login'}{' '}
               <img src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
             </a>

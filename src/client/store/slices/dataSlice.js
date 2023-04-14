@@ -8,17 +8,14 @@ const initialState = {
   },
 };
 
-}
-
 export const addDataCard = createAsyncThunk(
   'responseData/addDataCard',
   async (url) => {
-    const request = await fetch('/postURL', {
-      method: 'POST',
+    const request = await fetch(url, {
+      method: 'GET',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({url}),
     });
     const data = await request.json()
     // console.log('in reducer', data);
