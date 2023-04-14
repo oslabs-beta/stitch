@@ -27,7 +27,6 @@ app.get('/', (req, res) => {
   return res.sendStatus(200);
 });
 
-
 // GitHub OAuth Implementation
   // Endpoint to authorize user (redirects to github for authorization)
 app.get("/auth/github", (req, res) => {
@@ -46,6 +45,18 @@ app.get(
   (req, res) => {
     // console.log('user data', res.locals.userData);
     return res.status(200).redirect('/');
+})
+
+// Get saved views of github user
+app.get('/api/githubdata', dbController.getSavedViews, (req, res) => {
+  console.log(res.locals.savedViews);
+  return res.status(200).json('received get request');
+})
+
+// Save state to users github document
+app.post('/api/githubdata', dbController.saveView, (req, res) => {
+  // console.log(res.locals.savedViews);
+  return res.status(200).json('received post request');
 })
 
 // dynamic endpoint

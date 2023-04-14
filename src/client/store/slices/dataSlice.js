@@ -7,9 +7,6 @@ const initialState = {
     url: '',
     responseBody: {},
   },
-  activeUserGithubInfo: {
-    
-  },
 }
 
 export const addDataCard = createAsyncThunk(
@@ -24,6 +21,24 @@ export const addDataCard = createAsyncThunk(
     });
     const data = await request.json()
     // console.log('in reducer', data);
+    return data;
+  }
+);
+
+export const saveGithubView = createAsyncThunk(
+  'responseData/saveGithubView',
+  async ({viewName, id}, { getState, dispatch }) => {
+    // grab current state
+    const { responseData, schemaSlice} = getState();
+    const request = await fetch('/api/githubdata', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify( { responseData, schemaSlice, viewName, id} ),
+    });
+    const data = await request.json()
+    console.log('in reducer', data);
     return data;
   }
 );
@@ -51,12 +66,22 @@ export const dataSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
+    // Add Data Card Promise Resolve Handler
     builder.addCase(addDataCard.fulfilled, (state, action) => {
       state.endpointData[action.meta.arg] = action.payload;
       state.activeEndpoint = {
         url: action.meta.arg,
         responseBody: action.payload
       };
+    });
+    // Save View Promise Resolve Handler
+    builder.addCase(saveGithubView.fulfilled, (state, action) => {
+      // state.endpointData[action.meta.arg] = action.payload;
+      // state.activeEndpoint = {
+      //   url: action.meta.arg,
+      //   responseBody: action.payload
+      // };
+      console.log('done')
     });
   }
 })
