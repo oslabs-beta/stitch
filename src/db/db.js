@@ -15,7 +15,7 @@ const userGithubSchema = new Schema({
   githubUserName: { type: String, required: true },
   githubUserID: { type: String, required: true },
   githubUserAccessToken: { type: String, required: true },
-  githubUserState: {type: Object, required: true},
+  githubUserState: [Schema.Types.Mixed],
 });
 
 const githubUser = model('githubUser', userGithubSchema);
