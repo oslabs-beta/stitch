@@ -2,8 +2,6 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const axios = require('axios');
-const cookieParser = require('cookie-parser');
 const dataController = require('./controllers/dataController');
 const authController = require('./controllers/authController');
 const cookieController = require('./controllers/cookieController');
@@ -13,9 +11,6 @@ const PORT = 3000;
 // ENVIRONMENT VARIABLES
 require("dotenv").config();
 const GH_OAUTH_CLIENT_ID = process.env.GH_OAUTH_CLIENT_ID;
-const GH_OAUTH_SECRET = process.env.GH_OAUTH_SECRET;
-const GH_SESSION_SECRET = process.env.GH_SESSION_SECRET;
-const GH_CALLBACK_URL = 'http://localhost:8080/auth/github/callback';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -48,19 +43,16 @@ app.get(
   dataController.setGitHubUserInfo,
   dbController.addGithubUser,
   (req, res) => {
-    // console.log('user data', res.locals.userData);
     return res.status(200).redirect('/');
 })
 
 // Get saved views of github user
 app.get('/api/githubdata', dbController.getSavedViews, (req, res) => {
-  // console.log(res.locals.savedViews);
   return res.status(200).json(res.locals.savedViews);
 })
 
 // Save state to users github document
 app.post('/api/githubdata', dbController.saveView, (req, res) => {
-  // console.log(res.locals.savedViews);
   return res.status(200).json('received post request');
 })
 
@@ -85,7 +77,6 @@ app.use((err, req, res, next) => {
     message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
-  // console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 
