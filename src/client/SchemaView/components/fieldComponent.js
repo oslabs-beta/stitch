@@ -1,6 +1,4 @@
 // component responsible for rendering and modifying each field
-// may need a unique ids for all elements
-// place
 import utilityFunctions from '../../../utilities/utilities';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
@@ -43,20 +41,6 @@ export default function FieldComponent({ objectKey, objectValue }) {
       <select className='text-vscode-green bg-transparent border-b-2 border-desert-ash mr-24'>
         {arrayOfOptions}
       </select>
-      {/* <button
-        id='array-button'
-        className=''
-        onClick={handleClick}
-        style={{
-          backgroundColor: active
-            ? document
-                .querySelector('#array-button')
-                .classList.add('bg-desert-green')
-            : 'buttonface',
-        }}
-      >
-        []
-      </button> */}
       <button
         className='bg-midnight-glaucous hover:bg-midnight-glaucousDark rounded-md pl-2 pr-2 mr-2'
         onClick={() => dispatch(toggleRequired(objectKey))}
