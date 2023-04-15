@@ -40,7 +40,6 @@ app.get(
   authController.handleCallbackURL,
   authController.getGithubUserInfo,
   cookieController.setCookie,
-  dataController.setGitHubUserInfo,
   dbController.addGithubUser,
   (req, res) => {
     return res.status(200).redirect('/');
