@@ -48,7 +48,7 @@ export default function EndpointComponent() {
 
   // Create async function to retreive saved state if user is logged in
   const getSavedViews = async () => {
-    // await setTimeout(null, 500)
+    await setTimeout(null, 100)
     if (!cookies.ghInfoID) {
       return;
     } else {
