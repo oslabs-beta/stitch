@@ -29,7 +29,7 @@ const dbController = {
         githubUserAccessToken: accessToken,
         githubUserState: [],
       });
-      const newUserEntry = await newUser.save();
+      await newUser.save();
       return next();
     } catch {
       return next({
@@ -65,7 +65,7 @@ const dbController = {
           schemaSlice,
         },
       };
-      const myUser = await githubUser.findOneAndUpdate(
+      await githubUser.findOneAndUpdate(
         { githubUserID: id },
         { $push: { githubUserState: viewSnapshot } }
       );
