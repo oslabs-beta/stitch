@@ -1,7 +1,6 @@
 // tray containing all endpoints queried
 import EndpointIcon from './endpointIcon';
-import { useSelector, useDispatch } from 'react-redux';
-import { dataSlice } from '../store/slices/dataSlice';
+import { useSelector } from 'react-redux';
 
 export default function IconTrayContainer() {
   // Pulling in global endpoint state object
@@ -10,8 +9,6 @@ export default function IconTrayContainer() {
   // Unpacking state object and prop drilling
   const arrayOfComponents = [];
   for (const key in jsonObject) {
-    // console.log('in for loop', jsonObject)
-    // console.log('jsonObject keys', key)
     arrayOfComponents.push(
       <EndpointIcon
         key={`tray-component-${key}`}

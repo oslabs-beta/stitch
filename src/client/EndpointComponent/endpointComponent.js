@@ -2,7 +2,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addDataCard, saveGithubView, storeGithubUserView, loadSavedGithubView } from '../store/slices/dataSlice';
+import {
+  addDataCard,
+  saveGithubView,
+  storeGithubUserView,
+  loadSavedGithubView,
+} from '../store/slices/dataSlice';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
