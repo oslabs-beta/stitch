@@ -5,7 +5,6 @@ import { updateActiveEndpoint } from '../store/slices/dataSlice';
 
 function EndpointIcon({ endpointURL }) {
   const dispatch = useDispatch();
-  // will pass in image link via props to generate a diff image for each component
 
   return (
     <>
@@ -15,7 +14,6 @@ function EndpointIcon({ endpointURL }) {
       >
         {endpointURL}
       </button>
-      {/* <button onClick={() => console.log('clicked button', endpointURL)}>{endpointURL}</button> */}
     </>
   );
 }

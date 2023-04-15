@@ -1,12 +1,13 @@
-// field and button to perform get request and add url card to endpointTray
+// Header bar components
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import EndpointIcon from '../EndpointTrayContainer/endpointIcon';
-// this component will create an EndpointIcon component and then render it on the iconTryContainer componenet
-// Added the 2 below imports and will need to implement logic
 import { useDispatch } from 'react-redux';
-import { addDataCard, saveGithubView, storeGithubUserView, loadSavedGithubView } from '../store/slices/dataSlice';
-// Import react-cookie to check for github and local storage cookies
+import {
+  addDataCard,
+  saveGithubView,
+  storeGithubUserView,
+  loadSavedGithubView,
+} from '../store/slices/dataSlice';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
@@ -19,15 +20,17 @@ export default function EndpointComponent() {
 
   const [savedViews, setSavedViews] = useState({
     views: [
-      <option value="" disabled selected hidden>{'Load View'}</option>
+      <option value='' disabled selected hidden>
+        {'Load View'}
+      </option>,
     ],
   });
-  const githubSavedViews = useSelector((state) => state.responseData.githubUserSavedViews.views);
+  const githubSavedViews = useSelector(
+    (state) => state.responseData.githubUserSavedViews.views
+  );
 
   const dispatch = useDispatch();
   // Using react state management for Input field text.  No need to store globally in store.
-  // const [inputFieldData, setinputFieldData] = useState('enter endpoints');
-  // let inputText = 'enter endpoints';
   let inputText = '';
   let viewName = 'Save Current View';
 
@@ -48,26 +51,21 @@ export default function EndpointComponent() {
 
   // Create async function to retreive saved state if user is logged in
   const getSavedViews = async () => {
-    await setTimeout(null, 100)
+    await setTimeout(null, 100);
     if (!cookies.ghInfoID) {
       return;
     } else {
-      // if (viewsLoaded) return;
-      console.log('in else');
-      // Send call to Express to get user data based on
+      // Send call to Express to get user data based on github ID
       const request = await axios.get('/api/githubdata', {
         headers: { Accept: 'application/json' },
         params: { id: cookies.ghInfoID },
       });
-
       // Pre-save views to state
       // Update Load View component with saved views
-      console.log(savedViews);
       const temp = [];
       request.data.forEach((obj) => {
         let viewName = obj.snapshot.viewName;
-        // temp.push(<option value={viewName}>{viewName}</option>);
-        dispatch(storeGithubUserView(viewName))
+        dispatch(storeGithubUserView(viewName));
       });
 
       setSavedViews({
@@ -77,13 +75,17 @@ export default function EndpointComponent() {
   };
 
   useEffect(() => {
-    getSavedViews()
+    getSavedViews();
   }, []);
 
-  const gitHubViewComponents = [<option value="" disabled selected hidden>{'Load View'}</option>]
+  const gitHubViewComponents = [
+    <option value='' disabled selected hidden>
+      {'Load View'}
+    </option>,
+  ];
   githubSavedViews.forEach((view) => {
     gitHubViewComponents.push(<option value={view}>{view}</option>);
-  })
+  });
 
   return (
     <>
@@ -121,11 +123,17 @@ export default function EndpointComponent() {
             >
               Save
             </button>
-            <select 
+            <select
               className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white mx-2 text-sm'
-              // onChange={() => console.log('change happened', event.target.value)}
-              onChange={() => dispatch(loadSavedGithubView({viewName: event.target.value, id: cookies.ghInfoID}))}
-              >
+              onChange={() =>
+                dispatch(
+                  loadSavedGithubView({
+                    viewName: event.target.value,
+                    id: cookies.ghInfoID,
+                  })
+                )
+              }
+            >
               {gitHubViewComponents}
             </select>
             <button
@@ -144,9 +152,10 @@ export default function EndpointComponent() {
               href='/auth/github'
             >
               {'Login'}{' '}
-              <img 
-              className='mx-1'
-              src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
+              <img
+                className='mx-1'
+                src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t'
+              />
             </a>
           </div>
         )}

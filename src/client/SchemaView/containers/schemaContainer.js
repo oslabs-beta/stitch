@@ -1,7 +1,6 @@
 // container for each generated schema
 import TypeComponent from '../components/typeComponent';
 import SchemaFieldComponent from '../components/fieldComponent';
-import AddCustomSchemaFieldComponent from '../components/addCustomFieldComponent';
 import { useSelector } from 'react-redux';
 
 export default function SchemaContainer() {

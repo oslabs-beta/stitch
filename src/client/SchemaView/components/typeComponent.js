@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setTypeName } from '../../store/slices/schemaSlice';
 
 export default function TypeComponent() {
-  const typeName = useSelector((state) => state.schemaSlice.typeName);
   const dispatch = useDispatch();
   let currName = '';
 
