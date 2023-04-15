@@ -7,7 +7,7 @@ const initialState = {
     responseBody: {},
   },
   githubUserSavedViews: {
-
+    views: []
   }
 };
 
@@ -39,7 +39,34 @@ export const saveGithubView = createAsyncThunk(
       body: JSON.stringify( { responseData, schemaSlice, viewName, id} ),
     });
     const data = await request.json()
-    console.log('in reducer', data);
+    // console.log('in reducer', data);
+    return viewName;
+  }
+);
+
+export const loadSavedGithubView = createAsyncThunk(
+  'responseData/loadSavedGithubView',
+  async ({viewName, id}, { getState, dispatch }) => {
+    // grab current state
+    // const { responseData, schemaSlice} = getState();
+    console.log( { viewName, id } )
+    const { responseData, schemaSlice} = getState();
+    console.log('about to run get')
+    const request = await fetch('/api/getview', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify( { viewName, id } ),
+    });
+    // console.log('done with request', request);
+    const data = await request.json()
+    console.log('data response', data);
+    // console.log('in reducer', data);
+    // console.log(state.responseData)
+    // console.log(state.schemaSlice)
+    // state.responseData = data.responseData
+    // state.schemaSlice = data.schemaSlice
     return data;
   }
 );
@@ -57,12 +84,13 @@ export const dataSlice = createSlice({
         responseBody: state.endpointData[action.payload],
       };
     },
-    storeGithubUserViews: (state, action) => {
-      console.log('in update active endpoint reducer');
-      // console.log({action})
+    storeGithubUserView: (state, action) => {
+      console.log('in storeGithubUserView reducer');
+      console.log({action})
+      // console.log({action.payload})
 
       state.githubUserSavedViews = {
-        data: action.payload,
+        views: [...state.githubUserSavedViews.views, action.payload]
       };
     },
   },
@@ -77,15 +105,25 @@ export const dataSlice = createSlice({
     });
     // Save View Promise Resolve Handler
     builder.addCase(saveGithubView.fulfilled, (state, action) => {
-      // state.endpointData[action.meta.arg] = action.payload;
-      // state.activeEndpoint = {
-      //   url: action.meta.arg,
-      //   responseBody: action.payload
+      state.githubUserSavedViews = {
+        views: [...state.githubUserSavedViews.views, action.meta.arg.viewName]
+      };
+    });
+    // Update state with saved view data
+    // Save View Promise Resolve Handler
+    // NEED TO PULL IN ALL OF STATE AND UPDATE IT HERE:  Keith 4/14 8:11pm
+    builder.addCase(loadSavedGithubView.fulfilled, (state, action) => {
+      // state.githubUserSavedViews = {
+      //   views: [...state.githubUserSavedViews.views, action.meta.arg.viewName]
       // };
-      console.log('done')
+      // console.log(action.meta.arg)
+      // console.log('in builder', console.log(action.meta.arg));
+      // console.log(action.payload.responseData.endpointData)
+      state.endpointData = action.payload.responseData.endpointData;
+      state.activeEndpoint = action.payload.responseData.activeEndpoint;
     });
   }
 })
     
-export const { updateActiveEndpoint, setActiveUserGithubInfo, storeGithubUserViews } = dataSlice.actions
+export const { updateActiveEndpoint, setActiveUserGithubInfo, storeGithubUserView } = dataSlice.actions
 export default dataSlice.reducer;
