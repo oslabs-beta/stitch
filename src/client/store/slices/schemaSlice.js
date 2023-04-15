@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import utilityFunctions from "../../../utilities/utilities";
 const { scalarParser, snakeToCamel } = utilityFunctions;
+import { loadSavedGithubView } from '../slices/dataSlice';
 
 const initialState = {
   typeName: {
@@ -69,6 +70,22 @@ export const schemaSlice = createSlice({
       }
     },
   },
+  extraReducers: (builder) => {
+    // NEED TO PULL IN ALL OF STATE AND UPDATE IT HERE:  Keith 4/14 8:11pm
+    builder.addCase(loadSavedGithubView.fulfilled, (state, action) => {
+      // state.githubUserSavedViews = {
+      //   views: [...state.githubUserSavedViews.views, action.meta.arg.viewName]
+      // };
+      // console.log(action.meta.arg)
+      // console.log('in builder', console.log(action.meta.arg));
+      // console.log(action.payload.responseData.endpointData)
+      // const { schemaSlice } = getState();
+      console.log('in schemaSlice but found dataSlice reducer')
+      state.schemaFields = action.payload.schemaSlice.schemaFields
+      // state.endpointData = action.payload.responseData.endpointData;
+      // state.activeEndpoint = action.payload.responseData.activeEndpoint;
+    });
+  }
 });
 
 export const {

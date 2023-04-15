@@ -61,12 +61,13 @@ export const loadSavedGithubView = createAsyncThunk(
     });
     // console.log('done with request', request);
     const data = await request.json()
-    console.log('data response', data);
+    // console.log('data response', data);
     // console.log('in reducer', data);
     // console.log(state.responseData)
-    // console.log(state.schemaSlice)
+    // console.log('schemaSlice', schemaSlice)
     // state.responseData = data.responseData
-    // state.schemaSlice = data.schemaSlice
+    // schemaSlice.schemaFields = data.schemaSlice.schemaFields
+    // console.log(state.list)
     return data;
   }
 );
@@ -119,8 +120,12 @@ export const dataSlice = createSlice({
       // console.log(action.meta.arg)
       // console.log('in builder', console.log(action.meta.arg));
       // console.log(action.payload.responseData.endpointData)
+      // const { schemaSlice } = getState();
       state.endpointData = action.payload.responseData.endpointData;
       state.activeEndpoint = action.payload.responseData.activeEndpoint;
+      // console.log('schemaSlice', state.schemaSlice)
+      // console.log('schemaSlice', state.typeName)
+      // console.log('schemaSlice', state.schemaFields)
     });
   }
 })
