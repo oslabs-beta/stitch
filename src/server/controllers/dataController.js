@@ -19,7 +19,7 @@ const dataController = {
     try {
       const request = await fetch(url);
       const data = await request.json();
-      console.log('in server middleware', data);
+      // console.log('in server middleware', data);
       res.locals.data = data;
       return next();
     } catch {
@@ -32,7 +32,7 @@ const dataController = {
   },
   // Update state with user GitHub info
   setGitHubUserInfo: (req, res, next) => {
-    console.log('in set github middleware');
+    // console.log('in set github middleware');
     const { login, id } = res.locals.userData;
     const accessToken = res.locals.access_token;
     return next();

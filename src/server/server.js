@@ -54,7 +54,7 @@ app.get(
 
 // Get saved views of github user
 app.get('/api/githubdata', dbController.getSavedViews, (req, res) => {
-  console.log(res.locals.savedViews);
+  // console.log(res.locals.savedViews);
   return res.status(200).json(res.locals.savedViews);
 })
 
@@ -62,6 +62,11 @@ app.get('/api/githubdata', dbController.getSavedViews, (req, res) => {
 app.post('/api/githubdata', dbController.saveView, (req, res) => {
   // console.log(res.locals.savedViews);
   return res.status(200).json('received post request');
+})
+
+// Send back one saved view
+app.post('/api/getview', dbController.getOneSavedView, (req, res) => {
+  return res.status(200).json(res.locals.returnedView[0]);
 })
 
 // dynamic endpoint
@@ -80,7 +85,7 @@ app.use((err, req, res, next) => {
     message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log);
+  // console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
 });
 

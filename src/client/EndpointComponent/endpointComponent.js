@@ -1,14 +1,11 @@
 // field and button to perform get request and add url card to endpointTray
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import EndpointIcon from '../EndpointTrayContainer/endpointIcon';
 // this component will create an EndpointIcon component and then render it on the iconTryContainer componenet
 // Added the 2 below imports and will need to implement logic
 import { useDispatch } from 'react-redux';
-import {
-  addDataCard,
-  saveGithubView,
-  storeGithubUserViews,
-} from '../store/slices/dataSlice';
+import { addDataCard, saveGithubView, storeGithubUserView, loadSavedGithubView } from '../store/slices/dataSlice';
 // Import react-cookie to check for github and local storage cookies
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
@@ -22,12 +19,10 @@ export default function EndpointComponent() {
 
   const [savedViews, setSavedViews] = useState({
     views: [
-      <option value='Load View' selected>
-        {'Load View'}
-      </option>,
+      <option value="" disabled selected hidden>{'Load View'}</option>
     ],
   });
-  const [viewsLoaded, setViewsLoaded] = useState(false);
+  const githubSavedViews = useSelector((state) => state.responseData.githubUserSavedViews.views);
 
   const dispatch = useDispatch();
   // Using react state management for Input field text.  No need to store globally in store.
@@ -71,8 +66,8 @@ export default function EndpointComponent() {
       const temp = [];
       request.data.forEach((obj) => {
         let viewName = obj.snapshot.viewName;
-        temp.push(<option value={viewName}>{viewName}</option>);
-        // console.log(viewName)
+        // temp.push(<option value={viewName}>{viewName}</option>);
+        dispatch(storeGithubUserView(viewName))
       });
 
       setSavedViews({
@@ -85,7 +80,10 @@ export default function EndpointComponent() {
     getSavedViews()
   }, []);
 
-  // getSavedViews();
+  const gitHubViewComponents = [<option value="" disabled selected hidden>{'Load View'}</option>]
+  githubSavedViews.forEach((view) => {
+    gitHubViewComponents.push(<option value={view}>{view}</option>);
+  })
 
   return (
     <>
@@ -120,18 +118,15 @@ export default function EndpointComponent() {
               onClick={() =>
                 dispatch(saveGithubView({ viewName, id: cookies.ghInfoID }))
               }
-              // onClick={() => console.log('clicked save button')}
-              // name='submit'
             >
               Save
             </button>
-            <select className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white mx-2 text-sm'>
-              {savedViews.views}
-              {/* <option value={'Load View'} selected>
-                {'Load View'}
-              </option>
-              <option value={'Test 1'}>{'Test 1'}</option>
-              <option value={'Test 2'}>{'Test 2'}</option> */}
+            <select 
+              className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white mx-2 text-sm'
+              // onChange={() => console.log('change happened', event.target.value)}
+              onChange={() => dispatch(loadSavedGithubView({viewName: event.target.value, id: cookies.ghInfoID}))}
+              >
+              {gitHubViewComponents}
             </select>
             <button
               className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white text-s text-center py-2.5 px-2'
@@ -145,11 +140,13 @@ export default function EndpointComponent() {
           // If not render login button
           <div>
             <a
-              className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white text-center py-3 px-2 mx-2'
+              className='flex bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-md text-white text-center py-3 px-5 mx-5'
               href='/auth/github'
             >
               {'Login'}{' '}
-              <img src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
+              <img 
+              className='mx-1'
+              src='https://drive.google.com/uc?export=view&id=1oGENGZkqpg-IW9LVeok96jJ0GxksqP0t' />
             </a>
           </div>
         )}
