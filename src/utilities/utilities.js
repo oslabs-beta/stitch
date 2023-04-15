@@ -1,5 +1,6 @@
 const utilityFunctions = {
   scalarParser: (string) => {
+    string = string.toString();
     function helper(string) {
       if (Array.isArray(string)) {
         // const type = utilityFunctions.scalarParser(string[0]);
