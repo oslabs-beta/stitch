@@ -59,6 +59,7 @@ export const schemaSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loadSavedGithubView.fulfilled, (state, action) => {
       state.schemaFields = action.payload.schemaSlice.schemaFields;
+      state.typeName = action.payload.schemaSlice.typeName;
     });
   },
 });
