@@ -14,7 +14,7 @@ export default function EndpointComponent() {
     'ghInfoID',
     'ghToken',
   ]);
-  console.log(cookies);
+  // console.log('in endpointComponent, cookies', cookies);
   const dispatch = useDispatch();
   // Using react state management for Input field text.  No need to store globally in store.
   // const [inputFieldData, setinputFieldData] = useState('enter endpoints');
@@ -39,12 +39,14 @@ export default function EndpointComponent() {
           Stitch
         </h1>
         <input
+          //BOX WHERE THE USER INPUTS THEIR ENDPOINT
           className='w-7/12 rounded-full bg-colorHunt-tertiary h-12 pl-6 placeholder:italic focus:outline-none'
           type='text'
           onChange={handleChange}
           placeholder={inputText}
         />
         <button
+          //ADD ENDPOINT BUTTON
           className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white'
           onClick={() => dispatch(addDataCard(inputText))}
           name='submit'

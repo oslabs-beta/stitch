@@ -8,4 +8,7 @@ export const store = configureStore({
     responseData: dataReducer,
     schemaSlice: schemaReducer,
   },
+  // middleware: {
+    
+  // }
 })
