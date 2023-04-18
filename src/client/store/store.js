@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import dataReducer from './slices/dataSlice';
 import schemaReducer from './slices/schemaSlice';
+import endpointReducer from './slices/endpointSlice';
 
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -23,6 +24,10 @@ export const store = configureStore({
     schemaSlice: persistedSchemaReducer,
   },
   middleware: [thunk]
+  // reducer: {
+  //   responseData: dataReducer, 
+  //   schemaSlice: schemaReducer,
+  // }
 })
 
 export const persistor = persistStore(store)

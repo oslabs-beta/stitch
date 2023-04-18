@@ -70,7 +70,31 @@ export const dataSlice = createSlice({
       state.githubUserSavedViews = {
         views: [...state.githubUserSavedViews.views, action.payload],
       };
-    },
+    }, 
+    deleteEndpoint: (state, action) => {
+      console.log('in dataslice reducers - delete endpoint', action.payload)
+      delete state.endpointData[action.payload];
+      
+      const endpoints = Object.keys(state.endpointData);
+      //handling updating the active endpoint to reflect deleted endpoints
+
+      //if no more endpoints after endpoint is deleted, reset active endpoint to empty
+      if (endpoints.length === 0) {
+        console.log('in conditional statement')
+        state.activeEndpoint = {
+          url: '',
+          responseBody: {}
+        }
+      } 
+      //update active endpoint to last endpoint in endpointData state object
+      else {
+        state.activeEndpoint = {
+          url: endpoints[endpoints.length-1],
+          responseBody: state.endpointData[endpoints[endpoints.length-1]],
+        }
+      }
+      // window.location.reload(false)
+    }
   },
   extraReducers: (builder) => {
     // Add Data Card Promise Resolve Handler
@@ -99,5 +123,6 @@ export const {
   updateActiveEndpoint,
   setActiveUserGithubInfo,
   storeGithubUserView,
+  deleteEndpoint
 } = dataSlice.actions;
 export default dataSlice.reducer;
