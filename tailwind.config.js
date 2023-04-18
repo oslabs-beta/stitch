@@ -70,6 +70,11 @@ module.exports = {
         purple: '#C586C0',
         pink: '#D44796',
       },
+      cp: {
+        dustyGray: '#9f9d9d',
+        'dustyGray-40': '#5f5e5e',
+        'dustyGray-light': '#cfcece',
+      },
     },
   },
   plugins: [tailwindcss('./tailwind.config.js'), require('autoprefixer')],

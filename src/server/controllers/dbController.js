@@ -16,7 +16,7 @@ const dbController = {
     try {
       // Extract from request body
       console.log('in db controller');
-      const { login, id } = res.locals.userData;
+      const { login, id, avatar_url } = res.locals.userData;
       const accessToken = res.locals.access_token;
 
       // Check to see if user already exists and if so return next()
@@ -30,6 +30,7 @@ const dbController = {
       const newUser = new githubUser({
         githubUserName: login,
         githubUserID: id,
+        githubUserIcon: avatar_url,
         githubUserAccessToken: accessToken,
         githubUserState: [],
       });
@@ -51,7 +52,7 @@ const dbController = {
       const savedViews = await githubUser.find({ githubUserID: id });
       // console.log(savedViews)
       res.locals.savedViews = savedViews[0].githubUserState;
-      console.log('res locals', res.locals.savedViews);
+      // console.log('res locals', res.locals.savedViews);
       return next();
     } catch {
       return next({
@@ -74,8 +75,9 @@ const dbController = {
         },
       };
       const myUser = await githubUser.findOneAndUpdate(
-        { githubUserID: id }, 
-        { $push: {githubUserState: viewSnapshot}})
+        { githubUserID: id },
+        { $push: { githubUserState: viewSnapshot } }
+      );
       // console.log({ myUser });
       console.log('was able to update myUser doc locally');
       // await myUser.save();
