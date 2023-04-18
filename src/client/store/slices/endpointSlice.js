@@ -1,6 +1,7 @@
+//DONT THINK WE ARE ACTUALLY USING THIS
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialState =  {
   //ON EACH CLICK, ADD URL AND JSON RESPONSE OBJ DATA AS K/V PAIRS TO ENDPOINTS OBJECT
   endpoints: {},
 };
@@ -21,10 +22,10 @@ export const endpointSlice = createSlice({
         .then((data) => {
           state.endpoints[url] = data;
         });
-    },
+    }
   },
 });
 
-export const { addEndpoint } = endpointSlice.actions;
+export const { addEndpoint, deleteEndpoint } = endpointSlice.actions;
 
 export default endpointSlice.reducer;

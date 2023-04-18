@@ -1,4 +1,5 @@
 // tray containing all endpoints queried
+import EndpointDeleteButton from './deleteEndpointButton';
 import EndpointIcon from './endpointIcon';
 import { useSelector } from 'react-redux';
 
@@ -9,12 +10,24 @@ export default function IconTrayContainer() {
   // Unpacking state object and prop drilling
   const arrayOfComponents = [];
   for (const key in jsonObject) {
-    arrayOfComponents.push(
-      <EndpointIcon
-        key={`tray-component-${key}`}
-        className='trayComponent'
-        endpointURL={key}
-      />
+    arrayOfComponents.push([
+      <div className = 'flex flex-row justify-between'>
+        <div>
+          <EndpointIcon
+          key={`tray-component-${key}-endpointIcon`}
+          className='trayComponent'
+          endpointURL={key}
+        />
+        </div>
+        <div>
+          <EndpointDeleteButton
+          key={`tray-component-${key}-endpointDeleteButton`}
+          className='trayComponent' 
+          endpointURL={key}
+        /></div>
+        
+      </div>
+    ]
     );
   }
 
