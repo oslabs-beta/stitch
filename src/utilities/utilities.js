@@ -22,7 +22,7 @@ const utilityFunctions = {
       isArray: false,
       isObject: false,
       graphQL: '',
-      requiredOption: 0,
+      requiredOption: false,
       value: value,
     };
 

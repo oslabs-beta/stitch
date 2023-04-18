@@ -23,27 +23,31 @@ export const schemaSlice = createSlice({
     },
     addSchemaField: (state, action) => {
       const objectValue = action.payload.objectValue;
-      state.schemaFields[snakeToCamel(action.payload.objectKey)] =
-        scalarParser(objectValue);
+      state.schemaFields[snakeToCamel(action.payload.objectKey)] = scalarParser(objectValue);
     },
     toggleRequired: (state, action) => {
-      if (!state.schemaFields[action.payload].isArray) {
-        if (state.schemaFields[action.payload].requiredOption === 0) {
-          state.schemaFields[action.payload].requiredOption = 1;
-        } else {
-          state.schemaFields[action.payload].requiredOption = 0;
-        }
+      if (state.schemaFields[action.payload.objectKey].requiredOption === false) {
+        state.schemaFields[action.payload.objectKey].requiredOption = true;
+      } else {
+        state.schemaFields[action.payload.objectKey].requiredOption = false;
       }
-      // if it is an Array, we have 4 options between (2 - 5) to cycle between
-      else {
-        if (
-          state.schemaFields[action.payload].requiredOption === 0 ||
-          state.schemaFields[action.payload].requiredOption === 5
-        ) {
-          state.schemaFields[action.payload].requiredOption = 1;
-        }
-        state.schemaFields[action.payload].requiredOption++;
-      }
+    //   if (!state.schemaFields[action.payload].isArray) {
+    //     if (state.schemaFields[action.payload].requiredOption === 0) {
+    //       state.schemaFields[action.payload].requiredOption = 1;
+    //     } else {
+    //       state.schemaFields[action.payload].requiredOption = 0;
+    //     }
+    //   }
+    //   // if it is an Array, we have 4 options between (2 - 5) to cycle between
+    //   else {
+    //     if (
+    //       state.schemaFields[action.payload].requiredOption === 0 ||
+    //       state.schemaFields[action.payload].requiredOption === 5
+    //     ) {
+    //       state.schemaFields[action.payload].requiredOption = 1;
+    //     }
+    //     state.schemaFields[action.payload].requiredOption++;
+    //   }
     },
     deleteSchemaField: (state, action) => {
       delete state.schemaFields[action.payload.objectKey];
