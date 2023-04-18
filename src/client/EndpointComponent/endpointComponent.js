@@ -94,14 +94,14 @@ export default function EndpointComponent() {
           Stitch
         </h1>
         <input
-          className='w-7/12 rounded-full bg-colorHunt-tertiary h-12 pl-6 placeholder:italic focus:outline-none'
+          className='w-7/12 rounded-md bg-colorHunt-tertiary h-12 pl-6 placeholder:italic focus:outline-none'
           type='text'
           onChange={handleChange}
           placeholder={inputText}
         />
         <button
-          className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-colorHunt-tertiary w-24 rounded-full text-white'
-          onClick={() => dispatch(addDataCard(inputText))}
+          className='bg-midnight-fuchsia hover:bg-midnight-rose h-12 focus:ring-1 ring-vscode-foreground w-24 rounded-md text-white'
+          onClick= {() => dispatch(addDataCard(inputText))}
           name='submit'
         >
           Add

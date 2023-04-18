@@ -18,4 +18,4 @@ function EndpointIcon({ endpointURL }) {
   );
 }
 
-export default EndpointIcon;
+export default EndpointIcon; 
