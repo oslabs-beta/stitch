@@ -31,23 +31,6 @@ export const schemaSlice = createSlice({
       } else {
         state.schemaFields[action.payload.objectKey].requiredOption = false;
       }
-    //   if (!state.schemaFields[action.payload].isArray) {
-    //     if (state.schemaFields[action.payload].requiredOption === 0) {
-    //       state.schemaFields[action.payload].requiredOption = 1;
-    //     } else {
-    //       state.schemaFields[action.payload].requiredOption = 0;
-    //     }
-    //   }
-    //   // if it is an Array, we have 4 options between (2 - 5) to cycle between
-    //   else {
-    //     if (
-    //       state.schemaFields[action.payload].requiredOption === 0 ||
-    //       state.schemaFields[action.payload].requiredOption === 5
-    //     ) {
-    //       state.schemaFields[action.payload].requiredOption = 1;
-    //     }
-    //     state.schemaFields[action.payload].requiredOption++;
-    //   }
     },
     deleteSchemaField: (state, action) => {
       delete state.schemaFields[action.payload.objectKey];
