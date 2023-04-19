@@ -10,24 +10,25 @@ import thunk from 'redux-thunk';
 
 
 //configuring store to persist - https://blog.logrocket.com/persist-state-redux-persist-redux-toolkit-react/
-const persistConfig = {
-  key: 'root',
-  storage,
-}
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+//   blacklist: ['githubUserSavedViews']
+// }
 
-const persistedDataReducer = persistReducer(persistConfig, dataReducer);
-const persistedSchemaReducer = persistReducer(persistConfig, schemaReducer)
+// const persistedDataReducer = persistReducer(persistConfig, dataReducer);
+// const persistedSchemaReducer = persistReducer(persistConfig, schemaReducer)
 
 export const store = configureStore({
-  reducer: {
-    responseData: persistedDataReducer,
-    schemaSlice: persistedSchemaReducer,
-  },
-  middleware: [thunk]
   // reducer: {
-  //   responseData: dataReducer, 
-  //   schemaSlice: schemaReducer,
-  // }
+  //   responseData: persistedDataReducer,
+  //   schemaSlice: persistedSchemaReducer,
+  // },
+  // middleware: [thunk]
+  reducer: {
+    responseData: dataReducer, 
+    schemaSlice: schemaReducer,
+  }
 })
 
-export const persistor = persistStore(store)
+// export const persistor = persistStore(store)
