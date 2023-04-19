@@ -1,12 +1,13 @@
 // container for each generated schema
 import TypeComponent from '../components/typeComponent';
 import SchemaFieldComponent from '../components/fieldComponent';
-import AddCustomSchemaFieldComponent from '../components/addCustomFieldComponent';
 import { useSelector } from 'react-redux';
+import utilityFunctions from '../../../utilities/utilities';
 
 export default function SchemaContainer() {
   const schemas = useSelector((state) => state.schemaSlice.schemaFields);
   const typeName = useSelector((state) => state.schemaSlice.typeName);
+  const { scalarParser } = utilityFunctions;
   let displayTypeName = '';
 
   if (typeName.name != '') {
@@ -27,10 +28,12 @@ export default function SchemaContainer() {
 
   let schemaString = `type ${typeName} {`;
   for (const key in schemas) {
-    schemaString += '\n\t' + key + ' : ' + schemas[key].value + ', ';
+    schemaString += '\n\t' + key + ': ' + schemas[key].value;
+    if (schemas[key].requiredOption) schemaString += '!';
   }
   schemaString += '\n}';
 
+  /* Function that handles copying the Query */
   function handleCopy() {
     navigator.clipboard
       .writeText(schemaString)

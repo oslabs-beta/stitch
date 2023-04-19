@@ -17,12 +17,6 @@ export default function JsonFieldComponent({ objectKey, objectValue }) {
           <span className='text-vscode-darkOrange'>{objectValue}</span>
           <span className='text-vscode-foreground'>"</span>
         </div>
-        {/* <button
-          className='basis-1/6 bg-desert-gray hover:bg-space-jet text-vscode-foreground rounded-full h-6'
-          onClick={() => dispatch(addSchemaField({ objectKey, objectValue }))}
-        >
-          add
-        </button> */}
         <button
           className='basis-1/12 ml-5'
           onClick={() => dispatch(addSchemaField({ objectKey, objectValue }))}

@@ -1,14 +1,12 @@
 const utilityFunctions = {
   scalarParser: (string) => {
+    string = string.toString();
     function helper(string) {
       if (Array.isArray(string)) {
-        // const type = utilityFunctions.scalarParser(string[0]);
         return 'Array';
-        // if (string[0] === '[') return 'Array';
       }
       if (string[0] === '{' || typeof string === 'object') return 'Object';
       if (string === 'true' || string === 'false') return 'Boolean';
-      // if (parseFloat(string));
       if (string.includes('.')) {
         const isDecimal = string.replace('.', '');
         if (Number(isDecimal)) return 'Float';
@@ -19,13 +17,12 @@ const utilityFunctions = {
     }
 
     const value = helper(string);
-    // console.log(value);
     const object = {
       // create array of options corresponding to 'required state' of Arrays ie: [[], [!], []!, [!]!].
       isArray: false,
       isObject: false,
       graphQL: '',
-      requiredOption: 0,
+      requiredOption: false,
       value: value,
     };
 
@@ -50,7 +47,5 @@ const utilityFunctions = {
     );
   },
 };
-
-console.log(utilityFunctions.scalarParser({}));
 
 export default utilityFunctions;

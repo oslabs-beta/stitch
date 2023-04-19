@@ -7,6 +7,9 @@ const initialState = {
     responseBody: {},
   },
   githubUserSavedViews: {},
+  githubUserSavedViews: {
+    views: [],
+  },
 };
 
 export const addDataCard = createAsyncThunk(
@@ -19,25 +22,39 @@ export const addDataCard = createAsyncThunk(
       },
     });
     const data = await request.json();
-    // console.log('in reducer', data);
     return data;
   }
 );
 
 export const saveGithubView = createAsyncThunk(
   'responseData/saveGithubView',
-  async ({ viewName, id }, { getState, dispatch }) => {
-    // grab current state
+  async ({ viewName, id }, { getState }) => {
     const { responseData, schemaSlice } = getState();
     const request = await fetch('/api/githubdata', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({ responseData, schemaSlice, viewName, id }),
     });
     const data = await request.json();
-    console.log('in reducer', data);
+    return viewName;
+  }
+);
+
+export const loadSavedGithubView = createAsyncThunk(
+  'responseData/loadSavedGithubView',
+  async ({ viewName, id }, { getState }) => {
+    const request = await fetch('/api/getview', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ responseData, schemaSlice, viewName, id }),
+      body: JSON.stringify({ viewName, id }),
+    });
+    const data = await request.json();
     return data;
   }
 );
@@ -47,21 +64,39 @@ export const dataSlice = createSlice({
   initialState,
   reducers: {
     updateActiveEndpoint: (state, action) => {
-      console.log('in update active endpoint reducer');
-      // console.log({action})
-
       state.activeEndpoint = {
         url: action.payload,
         responseBody: state.endpointData[action.payload],
       };
     },
-    storeGithubUserViews: (state, action) => {
-      console.log('in update active endpoint reducer');
-      // console.log({action})
-
+    storeGithubUserView: (state, action) => {
       state.githubUserSavedViews = {
-        data: action.payload,
+        views: [...state.githubUserSavedViews.views, action.payload],
       };
+    },
+    deleteEndpoint: (state, action) => {
+      console.log('in dataslice reducers - delete endpoint', action.payload);
+      delete state.endpointData[action.payload];
+
+      const endpoints = Object.keys(state.endpointData);
+      //handling updating the active endpoint to reflect deleted endpoints
+
+      //if no more endpoints after endpoint is deleted, reset active endpoint to empty
+      if (endpoints.length === 0) {
+        console.log('in conditional statement');
+        state.activeEndpoint = {
+          url: '',
+          responseBody: {},
+        };
+      }
+      //update active endpoint to last endpoint in endpointData state object
+      else {
+        state.activeEndpoint = {
+          url: endpoints[endpoints.length - 1],
+          responseBody: state.endpointData[endpoints[endpoints.length - 1]],
+        };
+      }
+      // window.location.reload(false)
     },
   },
   extraReducers: (builder) => {
@@ -88,6 +123,7 @@ export const dataSlice = createSlice({
 export const {
   updateActiveEndpoint,
   setActiveUserGithubInfo,
-  storeGithubUserViews,
+  storeGithubUserView,
+  deleteEndpoint,
 } = dataSlice.actions;
 export default dataSlice.reducer;

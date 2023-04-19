@@ -1,8 +1,6 @@
 // component responsible for rendering and modifying each field
-// may need a unique ids for all elements
-// place
 import utilityFunctions from '../../../utilities/utilities';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import {
   deleteSchemaField,
@@ -12,6 +10,8 @@ import {
 
 export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
+  const schemas = useSelector((state) => state.schemaSlice.schemaFields);
+
 
   const [active, setActive] = useState(false);
   const handleClick = () => {
@@ -40,26 +40,15 @@ export default function FieldComponent({ objectKey, objectValue }) {
         {snakeToCamel(objectKey)}
       </span>
       <span className='pr-4'>:</span>
-      <select className='text-vscode-green bg-transparent border-b-2 border-desert-ash mr-24'>
+      <select className='text-vscode-green bg-transparent border-b-2 border-desert-ash mr-4'>
         {arrayOfOptions}
       </select>
-      {/* <button
-        id='array-button'
-        className=''
-        onClick={handleClick}
-        style={{
-          backgroundColor: active
-            ? document
-                .querySelector('#array-button')
-                .classList.add('bg-desert-green')
-            : 'buttonface',
-        }}
-      >
-        []
-      </button> */}
+      <span className='mr-20'>
+        { schemas[objectKey].requiredOption ? <span className='text-white'>{'!'}</span> : <span className='text-transparent'>{'.'}</span> }
+      </span>
       <button
         className='bg-midnight-glaucous hover:bg-midnight-glaucousDark rounded-md pl-2 pr-2 mr-2'
-        onClick={() => dispatch(toggleRequired(objectKey))}
+        onClick={() => dispatch(toggleRequired({ objectKey }))}
       >
         required
       </button>
