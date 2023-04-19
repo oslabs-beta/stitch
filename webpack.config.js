@@ -2,9 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: './src/client/index.js',
   output: {
-    path: path.resolve(__dirname, ('dist')),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
@@ -13,18 +13,18 @@ module.exports = {
     host: 'localhost',
     port: '8080',
     hot: true,
-    open: true,
+    open: false,
     historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'dist'),
       publicPath: '/dist',
     },
-    headers: {'Allow-Control-Allow-Origin': '*'},
+    headers: { 'Allow-Control-Allow-Origin': '*' },
     proxy: {
-      '/': 'http://localhost:3000',
+      '/': { target: 'http://localhost:3000', timeout: 500000 },
     },
   },
-  module:  {
+  module: {
     rules: [
       {
         test: /\.jsx?/,
@@ -33,29 +33,31 @@ module.exports = {
         options: {
           presets: [
             ['@babel/preset-env', { targets: 'defaults' }],
-            ['@babel/preset-react',
+            [
+              '@babel/preset-react',
               { targets: 'defaults', runtime: 'automatic' },
             ],
           ],
         },
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         exclude: /node_modules/,
         use: [
-          'style-loader', 
-          'css-loader', 
-          'sass-loader'
-        ]
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader',
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './client/index.html'
-    })
+      template: './src/client/index.html',
+    }),
   ],
-  resolve:{
-    extensions: ['.js', '.jsx']
+
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
-}
+};
