@@ -1,4 +1,4 @@
-// icon (clickable) representing json resopnse from endpointComponent
+// icon (clickable) representing json response from endpointComponent
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateActiveEndpoint } from '../store/slices/dataSlice';

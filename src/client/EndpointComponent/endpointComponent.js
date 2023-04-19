@@ -146,7 +146,6 @@ export default function EndpointComponent() {
               {'Logout'}
             </button>
             <div className='w-12 pt-3'>
-              {/* <span className='mx-3 '>{`${cookies.ghInfoUser}`} </span> */}
               <img className='rounded-full w-8 h-8' src={cookies.ghIcon}></img>
             </div>
           </div>

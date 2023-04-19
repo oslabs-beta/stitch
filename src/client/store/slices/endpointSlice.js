@@ -1,4 +1,3 @@
-//DONT THINK WE ARE ACTUALLY USING THIS
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState =  {

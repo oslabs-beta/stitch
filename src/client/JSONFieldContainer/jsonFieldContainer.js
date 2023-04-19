@@ -1,4 +1,4 @@
-// container for json response componets and all associated functionality
+// container for json response components and all associated functionality
 import JsonFieldComponent from './jsonFieldComponent';
 import { useSelector } from 'react-redux';
 

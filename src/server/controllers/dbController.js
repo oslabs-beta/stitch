@@ -71,8 +71,6 @@ const dbController = {
         { githubUserID: id },
         { $push: { githubUserState: viewSnapshot } }
       );
-      // console.log({ myUser });
-      console.log('was able to update myUser doc locally');
       // await myUser.save();
       return next();
     } catch {
