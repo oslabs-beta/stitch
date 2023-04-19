@@ -99,6 +99,11 @@ export const dataSlice = createSlice({
   extraReducers: (builder) => {
     // Add Data Card Promise Resolve Handler
     builder.addCase(addDataCard.fulfilled, (state, action) => {
+      for (const key in action.payload) {
+        if (typeof action.payload[key] === 'object' && Array.isArray(typeof action.payload[key]) === false) {
+          action.payload[key] = JSON.stringify(action.payload[key]);
+        }
+      }
       state.endpointData[action.meta.arg] = action.payload;
       state.activeEndpoint = {
         url: action.meta.arg,
