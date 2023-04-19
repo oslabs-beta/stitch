@@ -6,6 +6,7 @@ const initialState = {
     url: '',
     responseBody: {},
   },
+  githubUserSavedViews: {},
   githubUserSavedViews: {
     views: [],
   },
@@ -33,6 +34,7 @@ export const saveGithubView = createAsyncThunk(
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({ responseData, schemaSlice, viewName, id }),
     });
@@ -49,6 +51,7 @@ export const loadSavedGithubView = createAsyncThunk(
       headers: {
         'Content-type': 'application/json',
       },
+      body: JSON.stringify({ responseData, schemaSlice, viewName, id }),
       body: JSON.stringify({ viewName, id }),
     });
     const data = await request.json();
@@ -70,31 +73,31 @@ export const dataSlice = createSlice({
       state.githubUserSavedViews = {
         views: [...state.githubUserSavedViews.views, action.payload],
       };
-    }, 
+    },
     deleteEndpoint: (state, action) => {
-      console.log('in dataslice reducers - delete endpoint', action.payload)
+      console.log('in dataslice reducers - delete endpoint', action.payload);
       delete state.endpointData[action.payload];
-      
+
       const endpoints = Object.keys(state.endpointData);
       //handling updating the active endpoint to reflect deleted endpoints
 
       //if no more endpoints after endpoint is deleted, reset active endpoint to empty
       if (endpoints.length === 0) {
-        console.log('in conditional statement')
+        console.log('in conditional statement');
         state.activeEndpoint = {
           url: '',
-          responseBody: {}
-        }
-      } 
+          responseBody: {},
+        };
+      }
       //update active endpoint to last endpoint in endpointData state object
       else {
         state.activeEndpoint = {
-          url: endpoints[endpoints.length-1],
-          responseBody: state.endpointData[endpoints[endpoints.length-1]],
-        }
+          url: endpoints[endpoints.length - 1],
+          responseBody: state.endpointData[endpoints[endpoints.length - 1]],
+        };
       }
       // window.location.reload(false)
-    }
+    },
   },
   extraReducers: (builder) => {
     // Add Data Card Promise Resolve Handler
@@ -107,14 +110,12 @@ export const dataSlice = createSlice({
     });
     // Save View Promise Resolve Handler
     builder.addCase(saveGithubView.fulfilled, (state, action) => {
-      state.githubUserSavedViews = {
-        views: [...state.githubUserSavedViews.views, action.meta.arg.viewName],
-      };
-    });
-    // Update state with saved view data
-    builder.addCase(loadSavedGithubView.fulfilled, (state, action) => {
-      state.endpointData = action.payload.responseData.endpointData;
-      state.activeEndpoint = action.payload.responseData.activeEndpoint;
+      // state.endpointData[action.meta.arg] = action.payload;
+      // state.activeEndpoint = {
+      //   url: action.meta.arg,
+      //   responseBody: action.payload
+      // };
+      console.log('done');
     });
   },
 });
@@ -123,6 +124,6 @@ export const {
   updateActiveEndpoint,
   setActiveUserGithubInfo,
   storeGithubUserView,
-  deleteEndpoint
+  deleteEndpoint,
 } = dataSlice.actions;
 export default dataSlice.reducer;

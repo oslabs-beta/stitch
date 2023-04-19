@@ -14,7 +14,8 @@ const dbController = {
   // Update state with user GitHub info
   addGithubUser: async (req, res, next) => {
     try {
-      const { login, id } = res.locals.userData;
+      // Extract from request body
+      const { login, id, avatar_url } = res.locals.userData;
       const accessToken = res.locals.access_token;
       // Check to see if user already exists and if so return next()
       const userCheck = await githubUser.findOne({ githubUserID: id });
@@ -26,6 +27,7 @@ const dbController = {
       const newUser = new githubUser({
         githubUserName: login,
         githubUserID: id,
+        githubUserIcon: avatar_url,
         githubUserAccessToken: accessToken,
         githubUserState: [],
       });
@@ -65,10 +67,13 @@ const dbController = {
           schemaSlice,
         },
       };
-      await githubUser.findOneAndUpdate(
+      const myUser = await githubUser.findOneAndUpdate(
         { githubUserID: id },
         { $push: { githubUserState: viewSnapshot } }
       );
+      // console.log({ myUser });
+      console.log('was able to update myUser doc locally');
+      // await myUser.save();
       return next();
     } catch {
       return next({

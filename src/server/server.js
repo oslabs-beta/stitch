@@ -9,7 +9,7 @@ const dbController = require('./controllers/dbController');
 const PORT = 3000;
 
 // ENVIRONMENT VARIABLES
-require("dotenv").config();
+require('dotenv').config();
 const GH_OAUTH_CLIENT_ID = process.env.GH_OAUTH_CLIENT_ID;
 
 app.use(express.json());
@@ -28,32 +28,35 @@ app.get('/one', dataController.getOne, (req, res) => {
 });
 
 // GitHub OAuth Implementation
-  // Endpoint to authorize user (redirects to github for authorization)
-app.get("/auth/github", (req, res) => {
-  return res.redirect(`https://github.com/login/oauth/authorize?client_id=${GH_OAUTH_CLIENT_ID}`);
+// Endpoint to authorize user (redirects to github for authorization)
+app.get('/auth/github', (req, res) => {
+  return res.redirect(
+    `https://github.com/login/oauth/authorize?client_id=${GH_OAUTH_CLIENT_ID}`
+  );
 });
 
 // After user authorizes, GitHub sends us back to our redirect URL
- // we handle the redirect by running a POST request with the provided request query code provided by GitHub
+// we handle the redirect by running a POST request with the provided request query code provided by GitHub
 app.get(
-  "/auth/github/callback", 
+  '/auth/github/callback',
   authController.handleCallbackURL,
   authController.getGithubUserInfo,
   cookieController.setCookie,
   dbController.addGithubUser,
   (req, res) => {
     return res.status(200).redirect('/');
-})
+  }
+);
 
 // Get saved views of github user
 app.get('/api/githubdata', dbController.getSavedViews, (req, res) => {
   return res.status(200).json(res.locals.savedViews);
-})
+});
 
 // Save state to users github document
 app.post('/api/githubdata', dbController.saveView, (req, res) => {
   return res.status(200).json('received post request');
-})
+});
 
 // Send back one saved view
 app.post('/api/getview', dbController.getOneSavedView, (req, res) => {
@@ -63,7 +66,7 @@ app.post('/api/getview', dbController.getOneSavedView, (req, res) => {
 // dynamic endpoint
 app.post('/postURL', dataController.getUrlResponse, (req, res) => {
   return res.status(200).json(res.locals.data);
-})
+});
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));
