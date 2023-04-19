@@ -15,11 +15,14 @@ const GH_OAUTH_CLIENT_ID = process.env.GH_OAUTH_CLIENT_ID;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // serve css file
-app.use(express.static(path.resolve(__dirname, '../client/assets/css')));
+// app.use(express.static(path.resolve(__dirname, '../client/assets/css')));
+app.use(express.static(path.join(__dirname, '../../dist/')));
 
 // Landing page
 app.get('/', (req, res) => {
   return res.sendStatus(200);
+  // console.log(path.join(__dirname, '../client/index.html'))
+  // res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
 // test1 api
