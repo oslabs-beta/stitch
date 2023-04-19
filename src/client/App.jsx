@@ -6,11 +6,11 @@ import AllSchemasContainer from './SchemaView/containers/allSchemasContainer';
 export default function App() {
   return (
     //anything in className is tailwind styling
-    <div className='h-screen'> 
+    <div className=''>
       <div className='bg-colorHunt-secondary flex flex-row h-28 border-b-2 border-b-colorHunt-primary'>
         <EndpointComponent />
       </div>
-      <div className='flex flex-row h-full'>
+      <div className='flex flex-row h-screen max-h-fit'>
         <IconTrayContainer />
         <JSONFieldContainer />
         <AllSchemasContainer />
