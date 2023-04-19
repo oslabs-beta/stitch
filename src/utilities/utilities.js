@@ -1,8 +1,8 @@
 const utilityFunctions = {
   scalarParser: (string) => {
-    string = string.toString();
+    string = string.toString()
     function helper(string) {
-      if (Array.isArray(string)) {
+      if (Array.isArray(string) || string[0] === '[') {
         return 'Array';
       }
       if (string[0] === '{' || typeof string === 'object') return 'Object';
