@@ -11,6 +11,7 @@ Stitch is a lightweight GraphQL schema generation tool. You can use Stitch to lo
 ## How It Works
 
 Stitch can be used directly from your browser!  Just navigate to http://stitch-ql.app and you’re off.  
+Visit our landing Page: https://welcome-to-stitch.vercel.app/
 
 <img src="./src/client/assets/Stitch.gif" alt="Stitch GIF" width=100%>
 
