@@ -1,7 +1,7 @@
 const utilityFunctions = {
   scalarParser: (string) => {
     string = string.toString();
-    function helper(string) {
+    function _scalarParser(string) {
       if (Array.isArray(string)) {
         return 'Array';
       }
@@ -16,7 +16,7 @@ const utilityFunctions = {
       else return 'String';
     }
 
-    const value = helper(string);
+    const value = _scalarParser(string);
     const object = {
       // create array of options corresponding to 'required state' of Arrays ie: [[], [!], []!, [!]!].
       isArray: false,

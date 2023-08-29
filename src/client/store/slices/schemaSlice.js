@@ -23,10 +23,15 @@ export const schemaSlice = createSlice({
     },
     addSchemaField: (state, action) => {
       const objectValue = action.payload.objectValue;
-      state.schemaFields[snakeToCamel(action.payload.objectKey)] = scalarParser(objectValue);
+      console.log(scalarParser(objectValue));
+
+      state.schemaFields[snakeToCamel(action.payload.objectKey)] =
+        scalarParser(objectValue);
     },
     toggleRequired: (state, action) => {
-      if (state.schemaFields[action.payload.objectKey].requiredOption === false) {
+      if (
+        state.schemaFields[action.payload.objectKey].requiredOption === false
+      ) {
         state.schemaFields[action.payload.objectKey].requiredOption = true;
       } else {
         state.schemaFields[action.payload.objectKey].requiredOption = false;

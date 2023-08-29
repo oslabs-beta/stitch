@@ -11,7 +11,7 @@ export default function IconTrayContainer() {
   const arrayOfComponents = [];
   for (const key in jsonObject) {
     arrayOfComponents.push([
-      <div className='flex flex-row items-center gap-2'>
+      <div className='hover:bg-vscode-selection flex flex-row items-center gap-2'>
         <EndpointIcon
           key={`tray-component-${key}-endpointIcon`}
           endpointURL={key}
@@ -25,7 +25,7 @@ export default function IconTrayContainer() {
   }
 
   return (
-    <div className='bg-colorHunt-secondary border-r-colorHunt-primary basis-1/5 flex flex-col grow-0 border-r-2 col-span-1 '>
+    <div className='bg-colorHunt-secondary border-r-colorHunt-primary  basis-1/5 flex flex-col grow-0 border-r-2 col-span-1 '>
       <h1 className='text-center text-3xl pb-4 pt-5'>Endpoints</h1>
       {arrayOfComponents}
     </div>
