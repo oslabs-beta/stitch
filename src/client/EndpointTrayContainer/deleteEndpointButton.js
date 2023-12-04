@@ -7,6 +7,7 @@ function EndpointDeleteButton({ endpointURL }) {
   const handleClick = () => {
     dispatch(deleteEndpoint(endpointURL));
   };
+
   return (
     <div className='basis-1/3'>
       <button

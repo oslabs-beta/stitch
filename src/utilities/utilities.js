@@ -1,8 +1,9 @@
 const utilityFunctions = {
   scalarParser: (string) => {
-    string = string.toString()
-    function helper(string) {
-      if (Array.isArray(string) || string[0] === '[') {
+    const newString = string.toString();
+    // eslint-disable-next-line no-shadow
+    function parser(string) {
+      if (Array.isArray(string)) {
         return 'Array';
       }
       if (string[0] === '{' || typeof string === 'object') return 'Object';
@@ -13,17 +14,17 @@ const utilityFunctions = {
       }
       if (Number(string)) return 'Int';
       if (string.includes('ID')) return 'ID';
-      else return 'String';
+      return 'String';
     }
 
-    const value = helper(string);
+    const value = parser(newString);
+    // create array of options corresponding to 'required state' of Arrays ie: [[], [!], []!, [!]!].
     const object = {
-      // create array of options corresponding to 'required state' of Arrays ie: [[], [!], []!, [!]!].
       isArray: false,
       isObject: false,
       graphQL: '',
       requiredOption: false,
-      value: value,
+      value,
     };
 
     if (value === 'Array') {
@@ -39,6 +40,7 @@ const utilityFunctions = {
     const components = snakeStr.split('_');
     // Capitalize the first letter of each component except the first one
     return (
+      // eslint-disable-next-line
       components[0] +
       components
         .slice(1)

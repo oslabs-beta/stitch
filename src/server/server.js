@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+// const cors = require('cors');
 const dataController = require('./controllers/dataController');
 const authController = require('./controllers/authController');
 const cookieController = require('./controllers/cookieController');
@@ -11,7 +12,7 @@ const PORT = 3000;
 // ENVIRONMENT VARIABLES
 require('dotenv').config();
 const GH_OAUTH_CLIENT_ID = process.env.GH_OAUTH_CLIENT_ID;
-
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // serve css file
@@ -64,7 +65,7 @@ app.post('/api/githubdata', dbController.saveView, (req, res) => {
 // Send back one saved view
 app.post('/api/getview', dbController.getOneSavedView, (req, res) => {
   return res.status(200).json(res.locals.returnedView[0]);
-})
+});
 
 // dynamic endpoint
 app.post('/postURL', dataController.getUrlResponse, (req, res) => {

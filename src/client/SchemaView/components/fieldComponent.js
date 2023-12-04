@@ -12,7 +12,6 @@ export default function FieldComponent({ objectKey, objectValue }) {
   const dispatch = useDispatch();
   const schemas = useSelector((state) => state.schemaSlice.schemaFields);
 
-
   const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
@@ -44,7 +43,11 @@ export default function FieldComponent({ objectKey, objectValue }) {
         {arrayOfOptions}
       </select>
       <span className='mr-20'>
-        { schemas[objectKey].requiredOption ? <span className='text-white'>{'!'}</span> : <span className='text-transparent'>{'.'}</span> }
+        {schemas[objectKey].requiredOption ? (
+          <span className='text-white'>{'!'}</span>
+        ) : (
+          <span className='text-transparent'>{'.'}</span>
+        )}
       </span>
       <button
         className='bg-midnight-glaucous hover:bg-midnight-glaucousDark rounded-md pl-2 pr-2 mr-2'
