@@ -1,5 +1,7 @@
+import { Request, Response, NextFunction } from 'express';
+
 const dataController = {
-  getOne: async (req, res, next) => {
+  getOne: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const request = await fetch('https://swapi.dev/api/people/1/');
       const data = await request.json();
@@ -14,7 +16,7 @@ const dataController = {
     }
   },
   // Received passed in endpoint and runs get request
-  getUrlResponse: async (req, res, next) => {
+  getUrlResponse: async (req: Request, res: Response, next: NextFunction) => {
     const { url } = req.body;
     try {
       const request = await fetch(url);
@@ -31,4 +33,4 @@ const dataController = {
   },
 };
 
-module.exports = dataController;
+export default dataController;

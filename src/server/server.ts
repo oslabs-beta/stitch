@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const dataController = require('./controllers/dataController');
+import dataController from './controllers/dataController';
 // const authController = require('./controllers/authController');
 // const cookieController = require('./controllers/cookieController');
 // const dbController = require('./controllers/dbController');
