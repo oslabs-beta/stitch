@@ -42,9 +42,15 @@ module.exports = {
         },
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(t|j)sx?$/,
         exclude: /node_modules/,
-        loader: 'ts-loader',
+        use: { loader: 'ts-loader' },
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'source-map-loader',
       },
       {
         test: /\.css$/i,
