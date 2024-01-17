@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // ENVIRONMENT VARIABLES
-require("dotenv").config();
+require('dotenv').config();
 const DB_USER = process.env.DB_USER;
 const DB_PW = process.env.DB_PW;
 
@@ -21,4 +21,3 @@ const userGithubSchema = new Schema({
 const githubUser = model('githubUser', userGithubSchema);
 
 module.exports = githubUser;
-

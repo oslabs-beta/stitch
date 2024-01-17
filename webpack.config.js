@@ -8,6 +8,7 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/',
   },
+  devtool: 'source-map',
   mode: process.env.NODE_ENV,
   devServer: {
     host: 'localhost',
@@ -41,6 +42,11 @@ module.exports = {
         },
       },
       {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+      },
+      {
         test: /\.css$/i,
         exclude: /node_modules/,
         use: [
@@ -58,6 +64,6 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 };
